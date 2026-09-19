@@ -33,6 +33,9 @@ Simba makes MMM accessible to marketing teams who need rigorous measurement with
 
 ## Key Features
 
+### Shared Studies and MCP Integration
+Connect compatible AI clients to the same studies, recipe revisions, model runs and quality evidence used by analysts. MCP v0.4.1 provides 51 tools, with capability discovery for the connected backend and analyst acceptance in the frontend. See the [Simba MCP integration guide](docs/integrations/simba-mcp.md) for setup, retry safety and connection refresh instructions.
+
 ### Media Measurement & Attribution
 Measure the true incremental impact of every marketing channel using Bayesian causal attribution. Integrate lift test results as likelihood observations to calibrate and validate your model. See [Incremental Measurement](docs/platform-guide/measurement.md).
 
