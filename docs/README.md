@@ -14,6 +14,8 @@ Simba is a no-code MMM platform built on [PyMC-Marketing](https://www.pymc-marke
 | Build my first model | [Quick Start Guide](./getting-started/quick-start-guide.md) |
 | Connect agents to shared studies and models | [Simba MCP integration guide](./integrations/simba-mcp.md) |
 | Report sales and media data for any period | [Report sales and media data](./integrations/report-sales-and-media-data.md) |
+| Connect my data warehouse or lake | [Connect your warehouse](./integrations/connect-your-warehouse.md) |
+| Keep my data refreshed automatically | [Refresh data on a schedule](./integrations/refresh-data-on-a-schedule.md) |
 | Prepare and format my data | [Data Requirements](./data/data-requirements.md) |
 | Configure model priors and settings | [Model Configuration](./platform-guide/model-configuration.md) |
 | Understand my channel results | [Incremental Measurement](./platform-guide/measurement.md) |
