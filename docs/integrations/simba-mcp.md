@@ -4,33 +4,96 @@ The server reports its version and its tool list when a client connects. The gen
 
 The [open-source MCP server](https://github.com/getsimba-ai/simba-mcp) connects compatible AI clients to Simba's [Bayesian marketing mix models](../core-concepts/bayesian-modeling.md). Analysts and agents use the same backend services and persisted objects. Studies, recipe revisions, hashes, lineage, quality policies, evaluations and decisions live in the Simba database. MCP does not maintain another study store or run another modelling engine.
 
-## Connect locally or to a hosted server
+## Connect a client
 
-You need a Simba account, an API key and the backend URL for your deployment. Keep the key in your client's protected configuration, never in prompts, shared screenshots or source control.
+Two ways to authenticate, depending on the client. **A key** (create one under Profile → API Keys; choose its scopes, and it expires within a year) works everywhere. **OAuth** is for clients whose connector settings expect a sign-in flow: you approve the client on a consent screen, choose the scopes it gets, and can revoke it later under Profile → Connected apps. Tokens issued that way expire after an hour and renew for up to 30 days. Both give exactly the same access: the same scopes and the same refusals apply to a key and to an OAuth token.
 
-### Local stdio clients
+The hosted server for the demo deployment is `https://demo.simba-mmm.com/mcp`. Keep keys in your client's protected configuration, never in prompts, shared screenshots or source control.
 
-Python 3.11 or later is required. Install the verified release:
+### claude.ai (custom connector, OAuth)
 
-```sh
-pip install --upgrade "simba-mcp==0.4.1"
+1. In claude.ai, open **Settings → Connectors** and choose **Add custom connector**.
+2. Name it (for example "Simba") and enter the server URL `https://demo.simba-mmm.com/mcp`. Leave the OAuth client fields empty: the connector registers itself.
+3. Click **Add**, then **Connect**. A Simba page opens. Sign in if you are not signed in (with your second factor, if you have one).
+4. On the consent screen, the client name shown is the one the client registered. Only the read scopes (`read:models`, `read:results`) start ticked; tick the others the connection needs, then click **Approve**.
+5. Back in claude.ai the connector shows as connected. In a new chat, enable it and try "List my Simba projects".
+
+To disconnect, revoke it under Profile → Connected apps in Simba, or remove the connector in claude.ai. Either way the client has to connect again.
+
+### ChatGPT (connector, OAuth)
+
+1. In ChatGPT, open **Settings → Connectors** and create a connector (developer mode must be enabled for your workspace).
+2. Name it, enter the MCP server URL `https://demo.simba-mmm.com/mcp`, and choose **OAuth** as the authentication. No client ID or secret is needed.
+3. Save, then **Connect**. Sign in to Simba if asked, tick the scopes the connection needs on the consent screen (only the read scopes start ticked), and click **Approve**.
+4. Start a new conversation with the connector enabled.
+
+After a server upgrade, open the connector's settings and select **Refresh** so changed tool metadata is reloaded, then start a new conversation.
+
+### Claude Desktop (local, key)
+
+Claude Desktop runs the server as a local process. Python 3.11 or later is required.
+
+1. Create an API key under Profile → API Keys with the scopes you need.
+2. Open **Settings → Developer → Edit Config** and add:
+
+```json
+{
+  "mcpServers": {
+    "simba": {
+      "command": "uvx",
+      "args": ["simba-mcp"],
+      "env": {
+        "SIMBA_API_URL": "https://demo.simba-mmm.com",
+        "SIMBA_API_KEY": "simba_sk_…"
+      }
+    }
+  }
+}
 ```
 
-Configure your client to run `simba-mcp` with `SIMBA_API_URL` set to your backend URL and `SIMBA_API_KEY` set to your own key. Clients supporting `uvx` can instead run `uvx simba-mcp==0.4.1`. See the [client configuration examples](https://github.com/getsimba-ai/simba-mcp#quick-start).
+3. Restart Claude Desktop. The Simba tools appear in the tools menu.
 
-Restart the MCP connection after upgrading. An already-running process or conversation can retain the old tool catalog. In a fresh connection, inspect the server version and look for `get_backend_capabilities` and `list_studies`.
+`uvx simba-mcp` fetches the current release; `pip install --upgrade simba-mcp` and `"command": "simba-mcp"` work the same way. Restart the connection after an upgrade: a running process keeps the old tool catalog.
 
-### Hosted Streamable HTTP clients
+### Claude Code (key)
 
-Use the MCP endpoint supplied for your deployment. The hosted demo endpoint is `https://demo.simba-mmm.com/mcp`; local configuration uses the backend base URL without `/mcp`.
+```sh
+claude mcp add --transport http simba https://demo.simba-mmm.com/mcp   --header "Authorization: Bearer simba_sk_…"
+```
 
-The hosted service authenticates each caller using `Authorization: Bearer <your Simba API key>`. Your client or configured connection must support sending that credential. Tool annotations do not grant access, and a successful tool listing does not prove that authenticated calls will succeed.
+Then `/mcp` in a session shows the connection.
 
-Hosted clients cannot read a file from your computer through `csv_path`. Use supported CSV content upload or upload through the Simba application and select the existing dataset. Local file paths refer to the machine running the MCP process and are disabled by default on hosted transports. Start with `get_data_schema` for the current CSV contract and limits.
+### Cursor (key)
 
-### Refresh an existing ChatGPT connection
+Add to `.cursor/mcp.json` in your project, or the global one under Settings → MCP:
 
-For a developer-mode MCP connection, open its connection settings in ChatGPT Plugins, select **Refresh**, check that the new tools appear, and start a new conversation. This reloads changed tool metadata after a server upgrade. Published plugins have a separate continuous-review process for tool changes; server deployment alone does not confirm that a published listing has refreshed. Follow [OpenAI's connection and refresh guidance](https://developers.openai.com/plugins/deploy/connect-chatgpt#refresh-metadata).
+```json
+{
+  "mcpServers": {
+    "simba": {
+      "url": "https://demo.simba-mmm.com/mcp",
+      "headers": { "Authorization": "Bearer simba_sk_…" }
+    }
+  }
+}
+```
+
+### Claude API (MCP connector, key)
+
+The Messages API's MCP connector takes a static token only. Pass the server with `url: "https://demo.simba-mmm.com/mcp"` and `authorization_token` set to your key; see the [client configuration examples](https://github.com/getsimba-ai/simba-mcp#quick-start).
+
+### Which method a client uses
+
+| Client | Method | Where to revoke |
+|---|---|---|
+| claude.ai custom connector | OAuth | Profile → Connected apps |
+| ChatGPT connector | OAuth | Profile → Connected apps |
+| Claude Desktop | key (local process) | Profile → API Keys |
+| Claude Code | key | Profile → API Keys |
+| Cursor | key | Profile → API Keys |
+| Claude API connector | key | Profile → API Keys |
+
+Hosted clients cannot read a file from your computer through `csv_path`. Use the CSV content upload, or upload through the Simba application and select the existing dataset. Start with `get_data_schema` for the current CSV contract and limits.
 
 ## Discover what your backend supports
 
