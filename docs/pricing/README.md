@@ -37,7 +37,7 @@ Simba offers flexible plans designed to match your organization's needs.
 Every new account starts with a **28-day free trial** with access to core platform features. No credit card required.
 
 Trial includes:
-- Up to **10 saved models**
+- Up to **20 saved models**
 - Up to **10 optimization runs**
 - Up to **10 scenario plans**
 - Full access to Data Validator, model fitting, results, and VAR modeling

@@ -16,10 +16,18 @@ Simba is a no-code MMM platform built on [PyMC](https://www.pymc.io/) by the tea
 | Report sales and media data for any period | [Report sales and media data](./integrations/report-sales-and-media-data.md) |
 | Connect my data warehouse or lake | [Connect your warehouse](./integrations/connect-your-warehouse.md) |
 | Keep my data refreshed automatically | [Refresh data on a schedule](./integrations/refresh-data-on-a-schedule.md) |
+| Build a model on one pipeline version | [Build a model from a pipeline version](./integrations/model-from-a-pipeline-version.md) |
+| Read actual KPI, spend and media units per period | [Read model results](./integrations/read-model-results.md) |
+| Run the optimizer from an agent | [Run the optimizer from an agent](./integrations/optimize-over-mcp.md) |
+| Automate a weekly refresh and report | [Recurring automation with an external agent](./integrations/automate-with-an-agent.md) |
 | Prepare and format my data | [Data Requirements](./data/data-requirements.md) |
 | Configure model priors and settings | [Model Configuration](./platform-guide/model-configuration.md) |
+| Model a non-revenue KPI or report profit | [KPI types and profit outputs](./platform-guide/kpi-types-and-profit.md) |
+| Measure promotions, price and distribution | [Promotions and pricing as controls](./platform-guide/promotions-and-pricing.md) |
 | Understand my channel results | [Incremental Measurement](./platform-guide/measurement.md) |
 | Record geo, owned-media and lift tests and calibrate with them | [Incrementality tests](./platform-guide/incrementality-tests.md) |
+| Validate a model against a holdout and a quality policy | [Validation metrics, holdouts and quality policies](./platform-guide/validation-and-holdout.md) |
+| Run a study from recipe to champion | [Studies](./platform-guide/studies.md) |
 | Optimize my media budget | [Budget Optimization](./platform-guide/budget-optimization.md) |
 | Forecast a what-if scenario | [Scenario Planning](./platform-guide/scenario-planning.md) |
 | Learn the Bayesian methodology | [Bayesian Modeling](./core-concepts/bayesian-modeling.md) |
@@ -68,11 +76,15 @@ Step-by-step guides for every feature in the Simba interface.
 - **[Model Configuration](./platform-guide/model-configuration.md)** --- Deep reference for priors, saturation curves, adstock decay, and variable transformations
 - **[Smart Defaults](./platform-guide/smart-defaults.md)** --- How auto-generated starting points are derived from your data and industry benchmarks
 - **[Halo & Trademark Channels](./platform-guide/halo-trademark-channels.md)** --- Configuring cross-brand effects for portfolio analysis
+- **[KPI Types & Profit Outputs](./platform-guide/kpi-types-and-profit.md)** --- Choosing a likelihood for revenue, units, orders or shares, giving the model an operating margin, and where profit appears in results and the optimizer
+- **[Promotions & Pricing as Controls](./platform-guide/promotions-and-pricing.md)** --- Adding promotions, price and distribution as controls, choosing their transforms and reference level, and reading their contributions
 
 ### Measurement & Analysis
 
 - **[Incremental Measurement](./platform-guide/measurement.md)** --- Channel contributions, response curves, ROAS, posterior diagnostics, and contribution groups
 - **[Incrementality tests](./platform-guide/incrementality-tests.md)** --- Record geo tests, owned-media A/B tests and platform lift studies, import them from Meta, GeoX, GeoLift, CausalPy or CSV, and calibrate any model with a derived row whose steps are shown
+- **[Validation Metrics, Holdouts & Quality Policies](./platform-guide/validation-and-holdout.md)** --- Fit diagnostics and their thresholds, reserving a holdout, saved prediction windows, and declaring the quality policy a study run is scored against
+- **[Studies](./platform-guide/studies.md)** --- Drafts, published revisions, diffs, calibration, quality policies, evaluations and the Champion, shared by analysts in the app and agents over the API or MCP
 - **[Long-Term Effects](./platform-guide/long-term-effects.md)** --- Brand equity modeling with Bayesian VAR
 - **[VAR Models](./platform-guide/var-models.md)** --- Building and interpreting Vector AutoRegression models
 - **[Portfolio Analysis](./platform-guide/portfolio-analysis.md)** --- Cross-brand comparison, portfolio-level optimization, and consistent KPIs
@@ -123,7 +135,7 @@ How different teams and industries use Simba.
 
 ## Security & Compliance
 
-- **[Security Overview](./security/README.md)** --- AES-256 encryption at rest, TLS 1.3 in transit, Cyber Essentials certified, GDPR compliant
+- **[Security Overview](./security/README.md)** --- AES-256 encryption at rest, TLS 1.2+ in transit, Cyber Essentials certified, GDPR compliant
 
 ---
 

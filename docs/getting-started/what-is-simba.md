@@ -113,7 +113,7 @@ Read more: [Budget Optimization](../platform-guide/budget-optimization.md)
 
 ### Security and Compliance
 
-Your data is protected with enterprise-grade encryption, isolated storage per customer, and compliance with applicable data protection standards. Two-factor authentication (2FA) and SSO (Google, Microsoft) are available for account security.
+Your data is protected with encryption at rest and in transit, access isolated per project, and compliance with applicable data protection standards. Two-factor authentication (2FA) and SSO (Google, Microsoft) are available for account security.
 
 Read more: [Security Overview](../security/README.md)
 

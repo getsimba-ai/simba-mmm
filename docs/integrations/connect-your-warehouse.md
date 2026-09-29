@@ -66,4 +66,6 @@ get_pipeline_run(pipeline_ref="ab12cd34ef", run_id=41)
 
 Starting a run while one is going returns `409 run_in_progress` with that run's `run_id`: poll it rather than starting another.
 
+To go from a saved version to a fitted model, list the pipeline's versions with `list_pipeline_versions`, take a draft template for the version you want, and either fit it directly with `create_model` or publish it as a study recipe that records the pipeline, version and hash it came from. The steps, the HTTP routes and what a version pins are in [Build a model from a pipeline version](./model-from-a-pipeline-version.md).
+
 The exact MCP parameters are in the [simba-mcp tool reference](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tools.md).

@@ -126,7 +126,7 @@ Learn more: [Bayesian Modeling Explained](docs/core-concepts/bayesian-modeling.m
 - [Retail & E-commerce](docs/use-cases/retail-and-ecommerce.md) — Online and omnichannel retail
 
 ### Security & Compliance
-- [Security Overview](docs/security/README.md) — AES-256 encryption, TLS 1.3, Cyber Essentials certified, GDPR compliant
+- [Security Overview](docs/security/README.md) — AES-256 encryption, TLS 1.2+, Cyber Essentials certified, GDPR compliant
 
 ### Resources
 - [Glossary](resources/glossary.md) — Marketing mix modeling and Bayesian statistics terminology

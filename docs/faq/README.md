@@ -101,7 +101,7 @@ Simba can model any marketing channel where you have time-series data: TV, digit
 
 ### How secure is my marketing data?
 
-Your data is encrypted at rest and in transit using industry-standard protocols, and stored in isolated per-customer infrastructure.
+Your data is encrypted at rest and in transit using industry-standard protocols, and access is isolated per project: only the owner and the team it is shared with can read it.
 
 → [Security Overview](../security/README.md)
 
@@ -113,7 +113,7 @@ Yes. Simba is compliant with applicable data protection regulations. We practice
 
 ### Where is my data stored?
 
-Your data is stored in isolated, encrypted infrastructure with per-customer separation. Enterprise customers can discuss custom hosting arrangements for specific data residency requirements.
+Your data is stored encrypted, with access isolated per project. Enterprise customers can discuss custom hosting arrangements for specific data residency requirements.
 
 → [Security Overview](../security/README.md)
 
