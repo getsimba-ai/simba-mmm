@@ -16,7 +16,7 @@ Simba offers flexible plans designed to match your organization's needs.
 - Dedicated onboarding and success management
 - Custom SLAs and support terms
 
-> [Book a Call](https://calendly.com/niall-oulton)
+> [Start free](https://demo.simba-mmm.com/signup) · [Book a call](https://calendly.com/niall-oulton)
 
 ### Managed
 
@@ -28,21 +28,22 @@ Simba offers flexible plans designed to match your organization's needs.
 - Strategic consultation on media optimization
 - Ideal for teams without in-house data science resources
 
-> [Book a Call](https://calendly.com/niall-oulton)
+> [Start free](https://demo.simba-mmm.com/signup) · [Book a call](https://calendly.com/niall-oulton)
 
 ---
 
 ## Free Trial
 
-Every new account starts with a **28-day free trial** with access to core platform features. No credit card required.
+Every new account starts with a **28-day free trial** with access to core platform features. No credit card and no approval step: sign up, confirm your email and sign in. A sample model fitted on synthetic data is waiting in your Default Project.
 
-Trial includes:
-- Up to **20 saved models**
+Trial includes, per 30 days:
+- Up to **10 model fits**
 - Up to **10 optimization runs**
 - Up to **10 scenario plans**
-- Full access to Data Validator, model fitting, results, and VAR modeling
+- Up to **20 saved models**
+- Full access to Data Validator, model fitting, results, VAR modeling and the [MCP integration](../integrations/try-the-mcp.md)
 
-> [Book a Demo](https://calendly.com/niall-oulton)
+> [Start free](https://demo.simba-mmm.com/signup) · [Book a demo](https://calendly.com/niall-oulton)
 
 ---
 
@@ -87,7 +88,7 @@ When your 28-day trial ends:
 
 For specific pricing, visit [getsimba.ai](https://getsimba.ai) or contact our sales team at **info@pymc-labs.com**.
 
-> [Book a Call](https://calendly.com/niall-oulton) | [Calculate ROI](../../sales/roi-calculator.md)
+> [Start free](https://demo.simba-mmm.com/signup) | [Book a call](https://calendly.com/niall-oulton) | [Calculate ROI](../../sales/roi-calculator.md)
 
 ---
 
