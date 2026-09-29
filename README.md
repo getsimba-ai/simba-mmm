@@ -2,12 +2,12 @@
 
 [![Website](https://img.shields.io/badge/Website-getsimba.ai-blue)](https://getsimba.ai)
 [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)](#license)
-[![Built With](https://img.shields.io/badge/Built%20on-PyMC--Marketing-orange)](https://www.pymc-marketing.io/)
+[![Built With](https://img.shields.io/badge/Built%20on-PyMC-orange)](https://www.pymc.io/)
 [![Security](https://img.shields.io/badge/Security-Cyber%20Essentials%20Certified-green)](#security--compliance)
 
 **Simba is a no-code Bayesian Marketing Mix Modeling platform that measures media effectiveness, optimizes budgets, and forecasts marketing ROI.** Replace spreadsheets, fragmented models, and black-box vendors with one transparent, enterprise-ready platform.
 
-Built on the open-source [PyMC-Marketing](https://www.pymc-marketing.io/) framework by [PyMC Labs](https://www.pymc-labs.com/), Simba combines the rigor of Bayesian statistics with an intuitive no-code interface — giving marketing teams enterprise-grade marketing mix modeling without writing a single line of code.
+Built on the open-source [PyMC](https://www.pymc.io/) framework by [PyMC Labs](https://www.pymc-labs.com/), the team behind [PyMC-Marketing](https://www.pymc-marketing.io/), Simba combines the rigor of Bayesian statistics with an intuitive no-code interface — giving marketing teams enterprise-grade marketing mix modeling without writing a single line of code.
 
 ---
 
@@ -34,7 +34,7 @@ Simba makes MMM accessible to marketing teams who need rigorous measurement with
 ## Key Features
 
 ### Shared Studies and MCP Integration
-Connect compatible AI clients to the same studies, recipe revisions, model runs and quality evidence used by analysts. MCP v0.4.1 provides 51 tools, with capability discovery for the connected backend and analyst acceptance in the frontend. See the [Simba MCP integration guide](docs/integrations/simba-mcp.md) for setup, retry safety and connection refresh instructions.
+Connect compatible AI clients to the same studies, recipe revisions, model runs and quality evidence used by analysts. The generated [tool reference](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tools.md) lists every tool of the current release, with capability discovery for the connected backend and analyst acceptance in the frontend. See the [Simba MCP integration guide](docs/integrations/simba-mcp.md) for setup, retry safety and connection refresh instructions.
 
 ### Media Measurement & Attribution
 Measure the true incremental impact of every marketing channel using Bayesian causal attribution. Integrate lift test results as likelihood observations to calibrate and validate your model. See [Incremental Measurement](docs/platform-guide/measurement.md).
@@ -81,7 +81,7 @@ Simba uses Bayesian Marketing Mix Modeling rather than frequentist regression. T
 - **Prior knowledge** — encode domain expertise (e.g., "TV has longer carryover than paid search") directly into the model
 - **Lift test calibration** — integrate experimental results (lift tests, geo tests) as likelihood observations to validate and improve model accuracy
 - **Small data friendly** — Bayesian models produce reliable estimates even with limited historical data
-- **Fully transparent** — built on open-source [PyMC-Marketing](https://www.pymc-marketing.io/), so every model component is inspectable and auditable
+- **Fully transparent** — built on open-source [PyMC](https://www.pymc.io/), so every model component is inspectable and auditable
 
 Learn more: [Bayesian Modeling Explained](docs/core-concepts/bayesian-modeling.md) | [Priors & Distributions](docs/core-concepts/priors-and-distributions.md)
 
@@ -164,9 +164,9 @@ See [full competitor comparison](sales/competitor-comparison.md) for details.
 
 ---
 
-## Built on PyMC-Marketing
+## Built on PyMC
 
-Simba is powered by [PyMC-Marketing](https://www.pymc-marketing.io/), the leading open-source library for Bayesian marketing analytics. This means:
+Simba's models are written in [PyMC](https://www.pymc.io/), the open-source probabilistic programming framework, by [PyMC Labs](https://www.pymc-labs.com/), the team behind [PyMC-Marketing](https://www.pymc-marketing.io/). The engine is Simba's own; it does not import PyMC-Marketing. This means:
 
 - **Full transparency** — the probabilistic models driving your ROI are inspectable and auditable
 - **Scientific rigor** — built on decades of Bayesian statistics research
@@ -185,4 +185,4 @@ This repository and its contents are proprietary. See [LICENSE](LICENSE) for det
 
 ---
 
-<sub>[Simba](https://getsimba.ai) — Bayesian Marketing Mix Modeling platform. Built on [PyMC-Marketing](https://www.pymc-marketing.io/) by [PyMC Labs](https://www.pymc-labs.com/).</sub>
+<sub>[Simba](https://getsimba.ai) — Bayesian Marketing Mix Modeling platform. Built on [PyMC](https://www.pymc.io/) by [PyMC Labs](https://www.pymc-labs.com/), the team behind [PyMC-Marketing](https://www.pymc-marketing.io/).</sub>

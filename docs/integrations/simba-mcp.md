@@ -1,6 +1,6 @@
 # Simba MCP: shared workflows for analysts and agents
 
-Verified for **simba-mcp 0.4.1**, released 19 September 2026. This release registers **51 tools**. The connected backend determines which operations are supported; installing the package does not upgrade that backend.
+The server reports its version and its tool list when a client connects. The generated reference at [`docs/tools.md` in the simba-mcp repository](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tools.md) lists every tool of the current release with its parameters and whether it reads or writes; it is rendered from the running server, so no count or version is typed by hand. The connected backend determines which operations are supported; installing the package does not upgrade that backend.
 
 The [open-source MCP server](https://github.com/getsimba-ai/simba-mcp) connects compatible AI clients to Simba's [Bayesian marketing mix models](../core-concepts/bayesian-modeling.md). Analysts and agents use the same backend services and persisted objects. Studies, recipe revisions, hashes, lineage, quality policies, evaluations and decisions live in the Simba database. MCP does not maintain another study store or run another modelling engine.
 
@@ -36,7 +36,7 @@ For a developer-mode MCP connection, open its connection settings in ChatGPT Plu
 
 Call `get_backend_capabilities` before choosing model families, transformations, [coefficient priors](../core-concepts/priors-and-distributions.md) or workflow operations. It reads the connected backend's advertisements. An absent advertisement means **unknown**, not supported and not necessarily unsupported. Check the deployed backend version or contact your administrator before using an unadvertised feature.
 
-The v0.4.1 tools cover these groups:
+The tools cover these groups (examples, not the full list):
 
 | Task | Example tools |
 |---|---|
@@ -72,7 +72,7 @@ A stale recipe version returns **412**: reload the current recipe, reconcile the
 
 For model results, begin with `sections="channel_summary,model_stats"`, then request additional evidence. Filter with `channels` and `max_grid_points` where applicable. Optional `max_response_bytes` returns **413** if the filtered JSON exceeds the limit, rather than presenting partial evidence. This check happens after backend download and excludes MCP envelope overhead. Study histories are not yet backend-paginated.
 
-Existing tool names, required inputs and default payloads are preserved in v0.4.1. Additive backend response fields remain available. See the [release notes](https://github.com/getsimba-ai/simba-mcp/releases/tag/v0.4.1) and [architecture and compatibility guide](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/architecture.md).
+Existing tool names, required inputs and default payloads are preserved across releases; new tools and response fields are additive. See the [release notes](https://github.com/getsimba-ai/simba-mcp/releases) and the [architecture and compatibility guide](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/architecture.md).
 
 ## Try a read-only check
 

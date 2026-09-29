@@ -2,7 +2,7 @@
 
 **The complete guide to Bayesian Marketing Mix Modeling with Simba** --- from first upload to optimized budget recommendations.
 
-Simba is a no-code MMM platform built on [PyMC-Marketing](https://www.pymc-marketing.io/). Every model is fully transparent, every prior is configurable, and every result includes calibrated uncertainty intervals.
+Simba is a no-code MMM platform built on [PyMC](https://www.pymc.io/) by the team behind [PyMC-Marketing](https://www.pymc-marketing.io/). Every model is fully transparent, every prior is configurable, and every result includes calibrated uncertainty intervals.
 
 ---
 

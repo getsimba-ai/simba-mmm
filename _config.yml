@@ -1,0 +1,11 @@
+title: Simba documentation
+description: Bayesian marketing mix modeling — guides, concepts, integrations and the MCP server
+url: "https://docs.simba-mmm.com"
+exclude:
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - CITATION.cff
+  - notebooks/data
+relative_links:
+  enabled: true
+  collections: true
