@@ -30,8 +30,8 @@ Email **info@pymc-labs.com** with:
 Simba is Cyber Essentials certified and implements enterprise-grade security:
 
 - **Encryption at rest**: AES-256 encryption for all stored data
-- **Encryption in transit**: TLS 1.3 for all data transmission
-- **Infrastructure**: Isolated AWS S3 buckets with industry-leading cloud architecture
+- **Encryption in transit**: TLS 1.2 or later for all data transmission
+- **Infrastructure**: data encrypted at rest and access-isolated per project, so a user only reaches the projects and models they own or that are shared with their team
 - **Compliance**: Fully GDPR compliant with strict data minimization and zero-retention logging
 - **Data sovereignty**: Standard Contractual Clauses for international data transfers
 

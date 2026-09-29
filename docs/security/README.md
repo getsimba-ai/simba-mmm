@@ -7,7 +7,7 @@ Your marketing data is encrypted, isolated, and protected by enterprise-grade in
 ## Data Protection
 
 - **Encryption at rest and in transit.** All data is encrypted using industry-standard protocols.
-- **Per-customer data isolation.** Each customer's data is stored separately --- no co-mingling between accounts.
+- **Per-project access isolation.** Every dataset, model and result is scoped to its owner and the team it is shared with; no account can read another account's data.
 - **Aggregated data only.** Simba works with channel spend, impressions, and business outcomes. No user-level or personally identifiable data is required.
 
 ---

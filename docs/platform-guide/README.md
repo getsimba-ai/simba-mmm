@@ -12,6 +12,10 @@ This guide covers every major feature of the Simba MMM platform, organized aroun
 
 - **[Incremental Measurement](./measurement.md)** --- Causal attribution across all marketing channels. Separates base sales from media lift, integrates lift tests, and isolates the true incremental value of each channel. Includes model lifecycle, cloning, and custom contribution groups.
 
+- **[Validation Metrics, Holdouts and Quality Policies](./validation-and-holdout.md)** --- Fit diagnostics and their thresholds, reserving a holdout, saved prediction windows, and declaring the quality policy a study run is scored against.
+
+- **[Studies](./studies.md)** --- One shared record of a modelling question: drafts, published revisions, diffs, calibration, quality policies, evaluations and the Champion a person finally chooses.
+
 ### Step 3: Predict
 
 - **[Scenario Planning](./scenario-planning.md)** --- What-if forecasting with uncertainty bands. Configure monthly or weekly spend plans, adjust control variables, and generate Bayesian predictions with a comprehensive results dashboard including ROAS analysis, revenue decomposition, and efficiency scatter plots.
@@ -25,6 +29,10 @@ This guide covers every major feature of the Simba MMM platform, organized aroun
 - **[Model Creation Wizard](./model-creation-wizard.md)** --- Step-by-step guide through the 5-stage wizard: source configuration, variable selection, prior builder, model setup, and model details.
 
 - **[Model Configuration](./model-configuration.md)** --- No-code interface for setting priors, saturation curves, decay parameters, variable transformations, and adstock types on a per-channel basis.
+
+- **[KPI Types and Profit Outputs](./kpi-types-and-profit.md)** --- Choosing a likelihood for revenue, units, orders or shares, giving the model an operating margin, and where profit appears in results, planning and the optimizer.
+
+- **[Promotions and Pricing as Controls](./promotions-and-pricing.md)** --- Adding promotions, price and distribution as controls, choosing each control's transform and reference level, and reading its contribution.
 
 - **[Smart Defaults](./smart-defaults.md)** --- Auto-generated starting points derived from historical data and industry benchmarks. Explains when defaults are sufficient and when domain expertise should override them.
 

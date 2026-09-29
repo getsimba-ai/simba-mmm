@@ -28,7 +28,7 @@ Simba meters the following actions:
 
 | Resource | Trial | Analyst | Pro | Scale |
 |---|---|---|---|---|
-| **Saved models** | 10 | 1 | 5 | 10 |
+| **Saved models** | 20 | 1 | 5 | 20 |
 | **Model fits/period** | 10 | 1 | 5 | Unlimited |
 | **Optimizations/period** | 10 | 6 | 8 | Unlimited |
 | **Scenarios/period** | 10 | 6 | 8 | Unlimited |
@@ -54,7 +54,7 @@ To see your current billing period and days until reset, navigate to **Profile >
 
 Every new account starts with a **28-day free trial** that includes full platform access:
 
-- 10 saved models, 10 model fits, 10 optimizations, 10 scenarios
+- 20 saved models, 10 model fits, 10 optimizations, 10 scenarios
 - VAR models enabled
 - Full access to [Data Validator](./data-auditor.md), [Smart Defaults](./smart-defaults.md), and all analysis tabs
 - No credit card required
