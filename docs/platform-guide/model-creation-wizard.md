@@ -218,8 +218,9 @@ Add experimental results from geo-lift tests, conversion lift studies, or holdou
 | 1 | **Enable toggle** | Turn lift test calibration on/off with the checkbox next to the section header |
 | 2 | **Response Measurement Units** | Choose between raw response units (conversions, sales) or revenue units ($) |
 | 3 | **Cost Input Type** | How to input test costs: Direct Spend, Cost per Acquisition (CPA), Cost per Click (CPC), Cost per Thousand Impressions (CPM), or Custom Cost Metric |
-| 4 | **Lift Test Data table** | AG Grid for entering test data: channel, base spend, spend change, response change, and uncertainty (sigma). Add new tests with the "Add Test" button |
-| 5 | **Import/Export buttons** | Export lift test data as JSON for reuse, or import a previously saved configuration. Auto-calculate uncertainties button available |
+| 4 | **Lift Test Data table** | AG Grid for entering test data: channel, baseline level per period, change in level per period, response change per period, and uncertainty (sigma). Levels are in the channel's own units, with the spend behind the change shown as context. Add new tests with the "Add Test" button |
+| 5 | **Add from a recorded test** | Pick a test recorded under Warehouse → Experiments → Incrementality tests. Its row is derived for the model you are building and shown read-only under the grid; only the reference is stored. See [Incrementality tests](./incrementality-tests.md) |
+| 6 | **Import/Export buttons** | Export lift test data as JSON for reuse, or import a previously saved configuration. The "Auto-calculate all uncertainties" button is a placeholder that sets each row's uncertainty to 25% of its response change; a recorded test's interval is the better source |
 
 **Important:** Lift tests are incorporated as **likelihood observations** (not priors). They provide direct experimental evidence that helps calibrate the model's [saturation curves](../core-concepts/saturation-curves.md) and channel attribution. See [Incrementality](../core-concepts/incrementality.md) for the underlying methodology.
 

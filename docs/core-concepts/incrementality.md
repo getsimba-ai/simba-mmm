@@ -82,7 +82,7 @@ Lift tests (also called incrementality tests, geo tests, or holdout experiments)
 
 While lift tests are the gold standard for single-channel causal measurement, they have practical limitations --- you can only test one or two channels at a time, and running them continuously is impractical.
 
-Simba bridges this gap by letting you **calibrate the model with lift test results**. When you add a lift test result in the Model Details step, it enters the model as an additional likelihood term (not a prior). The model then combines this experimental evidence with the observational time-series data, producing posterior estimates that are consistent with both.
+Simba bridges this gap by letting you **calibrate the model with lift test results**. A test is recorded once, under Warehouse → Experiments → Incrementality tests, and used by reference when a model is built (see [Incrementality tests](../platform-guide/incrementality-tests.md)); it enters the model as an additional likelihood term (not a prior). The model then combines this experimental evidence with the observational time-series data, producing posterior estimates that are consistent with both.
 
 ![How lift tests calibrate the Bayesian model](./images/incrementality-lift-test.png)
 *Left: a lift test produces a measured lift (e.g., +15% with a confidence interval). Center: this enters the Bayesian model as a likelihood observation alongside the time-series data, constraining the response curve for that channel. Right: the resulting posterior is calibrated to be consistent with both the experiment and the observational data --- improving estimates for all channels.*
@@ -90,7 +90,7 @@ Simba bridges this gap by letting you **calibrate the model with lift test resul
 This creates a virtuous cycle:
 
 1. Run a lift test on a high-priority channel.
-2. Add the result as a calibration observation in the Model Details step.
+2. Record the result as an incrementality test, or import it from the tool that analysed it, and add it to the model from the Model Details step.
 3. The model uses this likelihood constraint to improve estimates for all channels (because a better-calibrated response curve for one channel reduces ambiguity for correlated channels).
 4. Use model output to prioritize the next lift test.
 

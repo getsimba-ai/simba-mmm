@@ -19,6 +19,7 @@ Simba is a no-code MMM platform built on [PyMC-Marketing](https://www.pymc-marke
 | Prepare and format my data | [Data Requirements](./data/data-requirements.md) |
 | Configure model priors and settings | [Model Configuration](./platform-guide/model-configuration.md) |
 | Understand my channel results | [Incremental Measurement](./platform-guide/measurement.md) |
+| Record geo, owned-media and lift tests and calibrate with them | [Incrementality tests](./platform-guide/incrementality-tests.md) |
 | Optimize my media budget | [Budget Optimization](./platform-guide/budget-optimization.md) |
 | Forecast a what-if scenario | [Scenario Planning](./platform-guide/scenario-planning.md) |
 | Learn the Bayesian methodology | [Bayesian Modeling](./core-concepts/bayesian-modeling.md) |
@@ -71,6 +72,7 @@ Step-by-step guides for every feature in the Simba interface.
 ### Measurement & Analysis
 
 - **[Incremental Measurement](./platform-guide/measurement.md)** --- Channel contributions, response curves, ROAS, posterior diagnostics, and contribution groups
+- **[Incrementality tests](./platform-guide/incrementality-tests.md)** --- Record geo tests, owned-media A/B tests and platform lift studies, import them from Meta, GeoX, GeoLift, CausalPy or CSV, and calibrate any model with a derived row whose steps are shown
 - **[Long-Term Effects](./platform-guide/long-term-effects.md)** --- Brand equity modeling with Bayesian VAR
 - **[VAR Models](./platform-guide/var-models.md)** --- Building and interpreting Vector AutoRegression models
 - **[Portfolio Analysis](./platform-guide/portfolio-analysis.md)** --- Cross-brand comparison, portfolio-level optimization, and consistent KPIs

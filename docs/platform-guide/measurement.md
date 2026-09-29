@@ -282,7 +282,7 @@ The model controls for confounders --- seasonality, holidays, promotions, and ot
 
 ### Lift Test Integration
 
-If you have run controlled experiments (geo-lift tests, conversion lift studies, or holdout tests), Simba incorporates those results as **likelihood observations** that calibrate the model. Lift tests are configured in Model Details during model creation. Each lift test specifies the channel, baseline spend, spend change, observed revenue change, and measurement uncertainty.
+If you have run controlled experiments (geo-lift tests, conversion lift studies, or holdout tests), Simba incorporates those results as **likelihood observations** that calibrate the model. Tests are recorded once, under **Warehouse → Experiments → Incrementality tests**, and used by reference from Model Details during model creation; each one gives the model a row with the channel, its baseline level, the change in level, the observed change in outcome and the uncertainty, derived per model with the steps shown. See [Incrementality tests](./incrementality-tests.md).
 
 Lift test results constrain the [posterior estimates](../core-concepts/priors-and-distributions.md) of channel effectiveness to be consistent with experimental evidence. This bridges observational modeling and experimental evidence for more trustworthy attribution. See [Incrementality](../core-concepts/incrementality.md) for the underlying methodology.
 
