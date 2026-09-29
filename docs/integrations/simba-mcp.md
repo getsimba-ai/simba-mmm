@@ -15,7 +15,7 @@ The hosted server for the demo deployment is `https://demo.simba-mmm.com/mcp`. K
 1. In claude.ai, open **Settings → Connectors** and choose **Add custom connector**.
 2. Name it (for example "Simba") and enter the server URL `https://demo.simba-mmm.com/mcp`. Leave the OAuth client fields empty: the connector registers itself.
 3. Click **Add**, then **Connect**. A Simba page opens. Sign in if you are not signed in (with your second factor, if you have one).
-4. On the consent screen, the client name shown is the one the client registered. Untick any scope you do not want to grant, then click **Approve**.
+4. On the consent screen, the client name shown is the one the client registered. Only the read scopes (`read:models`, `read:results`) start ticked; tick the others the connection needs, then click **Approve**.
 5. Back in claude.ai the connector shows as connected. In a new chat, enable it and try "List my Simba projects".
 
 To disconnect, revoke it under Profile → Connected apps in Simba, or remove the connector in claude.ai. Either way the client has to connect again.
@@ -24,7 +24,7 @@ To disconnect, revoke it under Profile → Connected apps in Simba, or remove th
 
 1. In ChatGPT, open **Settings → Connectors** and create a connector (developer mode must be enabled for your workspace).
 2. Name it, enter the MCP server URL `https://demo.simba-mmm.com/mcp`, and choose **OAuth** as the authentication. No client ID or secret is needed.
-3. Save, then **Connect**. Sign in to Simba if asked, review the scopes on the consent screen, and click **Approve**.
+3. Save, then **Connect**. Sign in to Simba if asked, tick the scopes the connection needs on the consent screen (only the read scopes start ticked), and click **Approve**.
 4. Start a new conversation with the connector enabled.
 
 After a server upgrade, open the connector's settings and select **Refresh** so changed tool metadata is reloaded, then start a new conversation.
