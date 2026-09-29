@@ -60,7 +60,7 @@ At minimum, you need:
 
 Yes — Simba offers a **28-day free trial** you can start yourself: sign up, confirm your email and sign in. Every trial account starts with a sample model fitted on synthetic data, so you can explore results, the optimizer and the [MCP integration](../integrations/try-the-mcp.md) before uploading your own data. The trial includes 10 model fits, 10 optimizations, 10 scenarios and up to 20 saved models per 30 days.
 
-→ [Start free](https://demo.simba-mmm.com/signup) · [Book a demo](https://calendly.com/niall-oulton)
+→ [Start free](https://demo.simba-mmm.com/users/signup) · [Book a demo](https://calendly.com/niall-oulton)
 
 ## Platform & Technical
 

@@ -4,7 +4,7 @@ No sales call, no waiting for approval. Every new Simba account starts with a **
 
 ## 1. Start free
 
-1. Go to [demo.simba-mmm.com/signup](https://demo.simba-mmm.com/signup). Enter your email address and a password, or sign up with **Google** or **Microsoft**.
+1. Go to [demo.simba-mmm.com/users/signup](https://demo.simba-mmm.com/users/signup). Enter your email address and a password, or sign up with **Google** or **Microsoft**.
 2. Click the confirmation link sent to your inbox. That activates your account.
 3. Sign in. Under **Models → Saved Models**, your Default Project holds **Sample model (synthetic data)**. Its results, curves, optimizer and scenarios all work; the numbers describe a synthetic dataset, and the model says so wherever its name appears.
 

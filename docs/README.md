@@ -175,7 +175,7 @@ How different teams and industries use Simba.
 - **[GitHub Issues](https://github.com/getsimba-ai/simba-mmm/issues)** --- Bug reports, feature requests, documentation feedback
 - **Email**: info@pymc-labs.com
 - **Website**: [getsimba.ai](https://getsimba.ai)
-- **Start free**: [demo.simba-mmm.com/signup](https://demo.simba-mmm.com/signup)
+- **Start free**: [demo.simba-mmm.com/users/signup](https://demo.simba-mmm.com/users/signup)
 - **Book a demo**: [Schedule a call](https://calendly.com/niall-oulton)
 
 ---
