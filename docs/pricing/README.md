@@ -40,7 +40,7 @@ Trial includes, per 30 days:
 - Up to **10 model fits**
 - Up to **10 optimization runs**
 - Up to **10 scenario plans**
-- Up to **20 saved models**
+- **1 saved model** of your own; the sample model every account starts with does not count
 - Full access to Data Validator, model fitting, results, VAR modeling and the [MCP integration](../integrations/try-the-mcp.md)
 
 > [Start free](https://demo.simba-mmm.com/users/signup) · [Book a demo](https://calendly.com/niall-oulton)
