@@ -138,7 +138,7 @@ Yes. All plans can be cancelled at any time with no cancellation fees.
 ### How do I get help?
 
 - **Documentation**: Browse this repository for guides and tutorials
-- **GitHub Issues**: [Report a bug](../../../issues/new?template=bug_report.yml) or [ask a question](../../../issues/new?template=support_question.yml)
+- **GitHub Issues**: [Report a bug](https://github.com/getsimba-ai/simba-mmm/issues/new?template=bug_report.yml) or [ask a question](https://github.com/getsimba-ai/simba-mmm/issues/new?template=support_question.yml)
 - **Email**: info@pymc-labs.com
 - **Website**: [getsimba.ai](https://getsimba.ai)
 
