@@ -14,8 +14,8 @@ Your marketing data is encrypted, isolated, and protected by enterprise-grade in
 
 ## Account Security
 
-- **Two-factor authentication (2FA)** available for all accounts.
-- **Single Sign-On (SSO)** via Google and Microsoft.
+- **Two-factor authentication (2FA)** available for all accounts. It applies to every way of signing in, including Google and Microsoft.
+- **Sign in with Google or Microsoft.** A provider identity is matched to your account only after you connect it yourself, from your profile or through a confirmation link we email to the account's address. Signing in with a provider never attaches it to an existing account on the strength of a matching email address.
 
 ---
 
