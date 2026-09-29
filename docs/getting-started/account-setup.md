@@ -102,7 +102,12 @@ Once enabled, you will need to provide a code from your authenticator app each t
 
 ### Single Sign-On (SSO)
 
-Simba supports sign-in via **Google** and **Microsoft** accounts. If you sign up with SSO, your account is automatically linked --- no separate password is needed.
+Simba supports sign-in via **Google** and **Microsoft** accounts.
+
+- **New to Simba?** Signing in with Google or Microsoft creates your account; no password is needed. If your provider has not verified your email address, we send a confirmation link first.
+- **Already have an account?** Connect a provider to it yourself: go to **Profile > Sign-in methods** and click **Link** next to Google or Microsoft. If you sign in with a provider whose email matches an existing account instead, we email that address a link to connect the provider; nothing is connected until you click it.
+- One provider can be connected per account. **Unlink** it from the same tab at any time, as long as the account has a password.
+- If two-factor authentication is on, you enter your authenticator code after signing in with a provider too.
 
 For full details on Simba's security practices, see [Security and Compliance](../security/README.md).
 
