@@ -160,7 +160,7 @@ See [full competitor comparison](sales/competitor-comparison.md) for details.
 - **[GitHub Issues](https://github.com/nialloulton/simba-mmm/issues)** — Bug reports, feature requests, and support questions
 - **Email**: info@pymc-labs.com
 - **Website**: [getsimba.ai](https://getsimba.ai)
-- **Start free**: [demo.simba-mmm.com/signup](https://demo.simba-mmm.com/signup)
+- **Start free**: [demo.simba-mmm.com/users/signup](https://demo.simba-mmm.com/users/signup)
 - **Book a demo**: [Schedule a call](https://calendly.com/niall-oulton)
 
 ---

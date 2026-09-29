@@ -16,7 +16,7 @@ Simba offers flexible plans designed to match your organization's needs.
 - Dedicated onboarding and success management
 - Custom SLAs and support terms
 
-> [Start free](https://demo.simba-mmm.com/signup) · [Book a call](https://calendly.com/niall-oulton)
+> [Start free](https://demo.simba-mmm.com/users/signup) · [Book a call](https://calendly.com/niall-oulton)
 
 ### Managed
 
@@ -28,7 +28,7 @@ Simba offers flexible plans designed to match your organization's needs.
 - Strategic consultation on media optimization
 - Ideal for teams without in-house data science resources
 
-> [Start free](https://demo.simba-mmm.com/signup) · [Book a call](https://calendly.com/niall-oulton)
+> [Start free](https://demo.simba-mmm.com/users/signup) · [Book a call](https://calendly.com/niall-oulton)
 
 ---
 
@@ -43,7 +43,7 @@ Trial includes, per 30 days:
 - Up to **20 saved models**
 - Full access to Data Validator, model fitting, results, VAR modeling and the [MCP integration](../integrations/try-the-mcp.md)
 
-> [Start free](https://demo.simba-mmm.com/signup) · [Book a demo](https://calendly.com/niall-oulton)
+> [Start free](https://demo.simba-mmm.com/users/signup) · [Book a demo](https://calendly.com/niall-oulton)
 
 ---
 
@@ -88,7 +88,7 @@ When your 28-day trial ends:
 
 For specific pricing, visit [getsimba.ai](https://getsimba.ai) or contact our sales team at **info@pymc-labs.com**.
 
-> [Start free](https://demo.simba-mmm.com/signup) | [Book a call](https://calendly.com/niall-oulton) | [Calculate ROI](../../sales/roi-calculator.md)
+> [Start free](https://demo.simba-mmm.com/users/signup) | [Book a call](https://calendly.com/niall-oulton) | [Calculate ROI](../../sales/roi-calculator.md)
 
 ---
 

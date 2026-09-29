@@ -8,7 +8,7 @@ This guide covers everything you need to get your Simba account up and running: 
 
 ### Sign Up
 
-1. [Start free](https://demo.simba-mmm.com/signup): enter your email address and create a password, or sign up with **Google** or **Microsoft**. No approval step and no credit card. Prefer a walkthrough first? [Book a demo](https://calendly.com/niall-oulton).
+1. [Start free](https://demo.simba-mmm.com/users/signup): enter your email address and create a password, or sign up with **Google** or **Microsoft**. No approval step and no credit card. Prefer a walkthrough first? [Book a demo](https://calendly.com/niall-oulton).
 2. Click the confirmation link sent to your inbox. That activates your account.
 3. Sign in. Your Default Project already holds a **sample model fitted on synthetic data**, so you can read results, run the optimizer and [connect an AI assistant](../integrations/try-the-mcp.md) before you upload anything.
 4. Upload your own data when you are ready and start modeling.
