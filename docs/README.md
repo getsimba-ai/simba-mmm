@@ -12,6 +12,7 @@ Simba is a no-code MMM platform built on [PyMC](https://www.pymc.io/) by the tea
 |---|---|
 | Understand what Simba does | [What is Simba?](./getting-started/what-is-simba.md) |
 | Build my first model | [Quick Start Guide](./getting-started/quick-start-guide.md) |
+| Try the MCP in five minutes on a sample model | [Try the MCP](./integrations/try-the-mcp.md) |
 | Connect agents to shared studies and models | [Simba MCP integration guide](./integrations/simba-mcp.md) |
 | Report sales and media data for any period | [Report sales and media data](./integrations/report-sales-and-media-data.md) |
 | Connect my data warehouse or lake | [Connect your warehouse](./integrations/connect-your-warehouse.md) |
@@ -43,6 +44,7 @@ New to Simba? Start here.
 - **[Quick Start Guide](./getting-started/quick-start-guide.md)** --- Build your first marketing mix model step by step
 - **[Your First Model (Tutorial)](./getting-started/first-model-tutorial.md)** --- Hands-on walkthrough with sample data
 - **[Account Setup](./getting-started/account-setup.md)** --- Registration, plans, and project configuration
+- **[Try the MCP](./integrations/try-the-mcp.md)** --- Start free, connect an AI assistant and test it on the sample model
 - **[Platform Overview](./getting-started/platform-overview.md)** --- Navigating the Simba interface: Model Warehouse, Active Model, Optimization, and Scenario Planner
 
 ---
@@ -173,7 +175,8 @@ How different teams and industries use Simba.
 - **[GitHub Issues](https://github.com/getsimba-ai/simba-mmm/issues)** --- Bug reports, feature requests, documentation feedback
 - **Email**: info@pymc-labs.com
 - **Website**: [getsimba.ai](https://getsimba.ai)
-- **Book a demo**: [Schedule a call](https://getsimba.ai)
+- **Start free**: [demo.simba-mmm.com/signup](https://demo.simba-mmm.com/signup)
+- **Book a demo**: [Schedule a call](https://calendly.com/niall-oulton)
 
 ---
 

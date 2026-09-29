@@ -12,10 +12,10 @@ This guide walks you through the complete Simba workflow, from signing up to int
 
 ## Step 1: Create Your Account
 
-1. Go to [getsimba.ai](https://getsimba.ai) and [book a demo](https://calendly.com/niall-oulton) to get started.
-2. Register with your email or sign in with **Google** or **Microsoft** SSO.
-3. You will land in the **Trial** plan, which gives you a full 28-day free trial with access to core features.
-4. No credit card is required to start.
+1. [Start free](https://demo.simba-mmm.com/signup): register with your email, or sign up with **Google** or **Microsoft**. Prefer a walkthrough first? [Book a demo](https://calendly.com/niall-oulton).
+2. Click the confirmation link in your inbox, then sign in.
+3. You land in the **Trial** plan: a 28-day free trial with access to core features, and a sample model fitted on synthetic data already in your Default Project.
+4. No credit card and no approval step are required to start.
 
 For detailed information about plans, projects, and team setup, see [Account Setup](account-setup.md).
 
