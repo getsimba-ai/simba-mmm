@@ -177,7 +177,8 @@ Enable lift test calibration to integrate experimental results as **likelihood o
 | 1 | **Enable toggle** | Beaker icon header with checkbox to enable/disable lift test calibration |
 | 2 | **About lift tests** | InfoBox explaining that lift tests are controlled experiments providing direct evidence of diminishing returns |
 | 3 | **Units and cost metric** | Units selector (Response or Revenue) and Cost Metric dropdown (Direct Spend, CPA, CPC, CPM, Custom) |
-| 4 | **Entry table** | Each lift test entry requires: Channel, x (baseline spend), Δx (spend change), Δy (observed response change), σ (uncertainty). Import/Export JSON available. |
+| 4 | **Entry table** | Each lift test entry has: Channel, x (the channel's baseline level per period), Δx (the change in level per period), Δy (observed response change per period), σ (uncertainty). Levels are in the channel's own units (impressions, GRPs, clicks, or currency for a spend channel); the spend behind the change is shown as context. Import/Export JSON available. |
+| 5 | **Add from a recorded test** | Pick a test recorded in the project and its row is derived for this model, with the steps shown. See [Incrementality tests](./incrementality-tests.md). |
 
 ### Holidays and Events
 

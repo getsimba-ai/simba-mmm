@@ -48,7 +48,7 @@ The v0.4.1 tools cover these groups:
 | Launch and monitor study runs | `launch_study_run`, `get_study_run`, `cancel_study_run` |
 | Review evidence and decisions | `evaluate_study_run`, `compare_study_runs`, `recommend_study_run`, `list_study_decisions` |
 
-Use the connected server's `tools/list` response for exact required inputs and available tools. Standard titles, descriptions and read-only/destructive/idempotency annotations help clients select tools; they are hints, never authorization controls.
+Later releases add tools beyond these groups; for example, recorded incrementality tests (`list_incrementality_tests`, `get_incrementality_test`, `create_incrementality_test`, `import_incrementality_tests`) and `create_model`'s `calibration` parameter are described in [Incrementality tests](../platform-guide/incrementality-tests.md). Use the connected server's `tools/list` response for exact required inputs and available tools. Standard titles, descriptions and read-only/destructive/idempotency annotations help clients select tools; they are hints, never authorization controls.
 
 ## A Studies workflow
 
