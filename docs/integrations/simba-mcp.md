@@ -4,9 +4,63 @@ The server reports its version and its tool list when a client connects. The gen
 
 The [open-source MCP server](https://github.com/getsimba-ai/simba-mcp) connects compatible AI clients to Simba's [Bayesian marketing mix models](../core-concepts/bayesian-modeling.md). Analysts and agents use the same backend services and persisted objects. Studies, recipe revisions, hashes, lineage, quality policies, evaluations and decisions live in the Simba database. MCP does not maintain another study store or run another modelling engine.
 
+## Proposed 0.13.0: choose the tools your assistant sees
+
+The following profile settings require the matching application and MCP 0.13.0
+release. They are proposed release instructions, not confirmation that 0.13.0 is
+published or deployed on your server. Existing connection instructions below
+remain separate from this coordinated upgrade.
+
+After your operator confirms that upgrade:
+
+1. Open **Profile > Connected apps** in Simba.
+2. Choose your **Preferred tool profile** and select **Save preference**.
+3. Reconnect your MCP client so it refreshes its tools.
+
+| Profile | Choose it for |
+| --- | --- |
+| Full | Mixed work and the complete catalogue. This is the default. |
+| Data scientist | The same complete catalogue as Full. |
+| Marketer | Reporting, planning, scenarios and optimisation. Choose Full to build models. |
+| Reviewer | Evidence and scientific review, including assessments and recommendations. It is not read-only. |
+
+This saved preference belongs to your account and applies to its hosted MCP
+connections. It narrows the operator's available tools and does not grant access,
+change connection permissions or raise server limits. If a task needs omitted
+tools, choose Full and reconnect; tools excluded by your operator remain excluded.
+Reconnecting does not cancel or undo an operation already submitted.
+
+Local stdio servers use their own launch configuration, not this hosted preference.
+See the [tool profile guide](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tool-profiles.md)
+for local setup. Resource ceilings, request policy and deployment settings belong
+to the operator; a local development `.env` does not configure a remote service.
+
+### Coordinated hosted upgrade
+
+The matching application accepts both Simba API keys and OAuth access tokens through
+its canonical authentication. Hosted `tools/list` and `tools/call` require the
+caller's bearer and a successful schema-version-1 preferences lookup, even when
+OAuth resource-server mode is disabled. Missing endpoints or failed lookups refuse
+the request; there is no older-backend fallback. Contact your operator if the
+server cannot resolve your preference. Keep credentials out of error reports.
+
+Operators must publish and verify the matching MCP distribution before updating
+the application's dependency pin to `simba-mcp==0.13.0` and validating the shared
+application/MCP image. Under separately authorised deployment, apply the additive
+preference migration before starting the matching versions, then verify ownership,
+reconnect and excluded-call refusal in a bounded canary. Installing a local package
+does not upgrade the hosted application.
+
+Prepare rollback to a previously verified matching application and MCP image while
+retaining the additive preference column and saved choices. Do not automatically
+run its down migration. The older 0.12.0 catalogue does not enforce saved profiles.
+The [proposed release review](https://github.com/getsimba-ai/simba-mcp/pull/74)
+contains the current scorecard and migration gates. Local synthetic checks do not
+establish deployed verification or a general latency or cost improvement.
+
 ## Connect a client
 
-Two ways to authenticate, depending on the client. **A key** (create one under Profile → API Keys; choose its scopes, and it expires within a year) works everywhere. **OAuth** is for clients whose connector settings expect a sign-in flow: you approve the client on a consent screen, choose the scopes it gets, and can revoke it later under Profile → Connected apps. Tokens issued that way expire after an hour and renew for up to 30 days. Both give exactly the same access: the same scopes and the same refusals apply to a key and to an OAuth token.
+Two ways to authenticate, depending on the client. **A key** (create one under Profile → API Keys; choose its scopes, and it expires within a year) works everywhere. **OAuth** is for clients whose connector settings expect a sign-in flow: you approve the client on a consent screen, choose the scopes it gets, and can revoke it later under Profile → Connected apps. Tokens issued that way expire after an hour and renew for up to 30 days. Both use the same authorisation rules, with access determined by the scopes granted to that particular key or OAuth connection. A tool profile does not add scopes.
 
 The hosted server for the demo deployment is `https://demo.simba-mmm.com/mcp`. Keep keys in your client's protected configuration, never in prompts, shared screenshots or source control.
 
@@ -133,7 +187,20 @@ A stale recipe version returns **412**: reload the current recipe, reconcile the
 
 ## Retrieve only the evidence you need
 
-For model results, begin with `sections="channel_summary,model_stats"`, then request additional evidence. Filter with `channels` and `max_grid_points` where applicable. Optional `max_response_bytes` returns **413** if the filtered JSON exceeds the limit, rather than presenting partial evidence. This check happens after backend download and excludes MCP envelope overhead. Study listings (runs, recipes, evaluations, decisions) return every row unless you pass `limit`; the response then carries `next_cursor`, which you send back unchanged as `cursor` for the next page.
+Choose result sections for the question. When the exact `model_hash` is already
+known, read the needed saved results directly; a model name may first need permitted
+discovery to resolve its identifier. To relate a user-facing channel name to a
+result key, request `channel_map` with the needed result sections where possible
+and use its explicit mapping. Reuse mapping and guidance already returned for the
+model; do not infer identity from spelling. Request the relevant dates for windowed
+claims, recompute aggregate ROI as summed revenue divided by summed spend, and
+leave missing evidence unknown. Filter with `channels` and `max_grid_points` where applicable. Optional `max_response_bytes` returns **413** if the filtered JSON exceeds the limit, rather than presenting partial evidence. This check happens after backend download and excludes MCP envelope overhead. Study listings (runs, recipes, evaluations, decisions) return every row unless you pass `limit`; the response then carries `next_cursor`, which you send back unchanged as `cursor` for the next page.
+
+The post-download output limit is distinct from opt-in encoded and decoded download
+ceilings and request deadlines. Those are operator controls, not a reason to omit
+needed evidence. Bounded read retries do not authorise repeating mutations or prove
+that a timed-out backend job was cancelled. Consult the release's configuration
+inventory rather than copying unmeasured production limits.
 
 Releases so far have kept existing tool names, required inputs and default payloads, and have added new tools and response fields rather than changing existing ones; each release states what it keeps. See the [release notes](https://github.com/getsimba-ai/simba-mcp/releases) and the [architecture and compatibility guide](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/architecture.md).
 
