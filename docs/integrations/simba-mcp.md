@@ -44,8 +44,8 @@ OAuth resource-server mode is disabled. Missing endpoints or failed lookups refu
 the request; there is no older-backend fallback. Contact your operator if the
 server cannot resolve your preference. Keep credentials out of error reports.
 
-Operators must publish and verify the matching MCP distribution before updating
-the application's dependency pin to `simba-mcp==0.13.0` and validating the shared
+After the matching MCP distribution is published and verified, update the
+application's dependency pin to `simba-mcp==0.13.0` and validate the shared
 application/MCP image. Under separately authorised deployment, apply the additive
 preference migration before starting the matching versions, then verify ownership,
 reconnect and excluded-call refusal in a bounded canary. Installing a local package
@@ -193,8 +193,8 @@ discovery to resolve its identifier. To relate a user-facing channel name to a
 result key, request `channel_map` with the needed result sections where possible
 and use its explicit mapping. Reuse mapping and guidance already returned for the
 model; do not infer identity from spelling. Request the relevant dates for windowed
-claims, recompute aggregate ROI as summed revenue divided by summed spend, and
-leave missing evidence unknown. Filter with `channels` and `max_grid_points` where applicable. Optional `max_response_bytes` returns **413** if the filtered JSON exceeds the limit, rather than presenting partial evidence. This check happens after backend download and excludes MCP envelope overhead. Study listings (runs, recipes, evaluations, decisions) return every row unless you pass `limit`; the response then carries `next_cursor`, which you send back unchanged as `cursor` for the next page.
+claims. The windowed `channel_summary` recomputes aggregate ROI as summed revenue
+divided by summed spend; use that returned evidence and leave missing evidence unknown. Filter with `channels` and `max_grid_points` where applicable. Optional `max_response_bytes` returns **413** if the filtered JSON exceeds the limit, rather than presenting partial evidence. This check happens after backend download and excludes MCP envelope overhead. Study listings (runs, recipes, evaluations, decisions) return every row unless you pass `limit`; the response then carries `next_cursor`, which you send back unchanged as `cursor` for the next page.
 
 The post-download output limit is distinct from opt-in encoded and decoded download
 ceilings and request deadlines. Those are operator controls, not a reason to omit
@@ -202,7 +202,7 @@ needed evidence. Bounded read retries do not authorise repeating mutations or pr
 that a timed-out backend job was cancelled. Consult the release's configuration
 inventory rather than copying unmeasured production limits.
 
-Releases so far have kept existing tool names, required inputs and default payloads, and have added new tools and response fields rather than changing existing ones; each release states what it keeps. See the [release notes](https://github.com/getsimba-ai/simba-mcp/releases) and the [architecture and compatibility guide](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/architecture.md).
+Consult the [release notes](https://github.com/getsimba-ai/simba-mcp/releases) and [architecture and compatibility guide](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/architecture.md) for required application/package versions and migration steps. Preserved tool names or input schemas do not imply compatibility with an older hosted application.
 
 ## Try a read-only check
 
