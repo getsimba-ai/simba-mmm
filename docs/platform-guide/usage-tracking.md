@@ -86,7 +86,9 @@ To view your current usage:
 
 ## What Happens When You Hit a Limit
 
-Simba uses **soft enforcement** for most limits:
+**On the Trial, limits are firm.** When you reach a per-period limit (10 model fits, 10 optimizations or 10 scenarios per 30 days), that action is refused with a message naming the limit and what you have used, on the app, the API and MCP alike. A Trial account also runs **one model fit at a time**: a second fit is refused until the first finishes. Usage resets at the start of your next billing period, or you can [upgrade your plan](../pricing/README.md) to raise the limits at once.
+
+**On paid plans, enforcement is soft** for per-period limits:
 
 - When you reach a per-period limit, actions are **still allowed** but you receive a **warning message** indicating you've exceeded your allocation
 - The warning appears in the API response and is visible in the usage meters ("at limit" indicator)
@@ -94,7 +96,7 @@ Simba uses **soft enforcement** for most limits:
 - Usage resets automatically at the start of your next billing period
 - Alternatively, **upgrade your plan** to immediately increase your limits
 
-**Hard enforcement** only applies when a trial (and its grace period) has fully expired — in that case, model creation, optimizations, scenarios, and refits are blocked until you upgrade.
+**Every plan** is hard-blocked from model creation, optimizations, scenarios and refits once a trial and its grace period have fully expired, until you upgrade.
 
 ---
 
