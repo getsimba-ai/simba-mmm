@@ -28,7 +28,7 @@ The prompt is generated for your deployment, so the URL and config in it are alr
 
 ## What the trial allows
 
-The trial lasts 28 days and includes, per 30 days, 10 model fits, 10 optimizations, 10 scenarios and up to 20 saved models, with one model fitting at a time. The assistant runs under the same account and the same limits: when a limit is reached, its tool call is refused with the same message you would see in the app. See [Pricing](../pricing/README.md) for the plans.
+The trial lasts 28 days and includes, per 30 days, 10 model fits, 10 optimizations and 10 scenarios, with one model fitting at a time, and one saved model of your own beside the sample (unsave it to keep a different one). The assistant runs under the same account and the same limits: when a limit is reached, its tool call is refused with the same message you would see in the app. See [Pricing](../pricing/README.md) for the plans.
 
 ## Next
 
