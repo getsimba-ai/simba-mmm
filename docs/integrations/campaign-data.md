@@ -1,6 +1,6 @@
 # Campaign data
 
-Simba models at channel level. **Campaign data** brings the campaigns and ad sets behind each channel into Simba — spend, impressions, clicks, and the platforms' own conversions and value, one row per campaign per day — so campaign-level reports and, later, campaign-level incremental returns can read them. It arrives through a data pipeline you already have, and the channel each campaign counts towards is something you declare, never something Simba guesses.
+Simba models at channel level. **Campaign data** brings the campaigns and ad sets behind each channel into Simba — spend, impressions, clicks, and the platforms' own conversions and value, one row per campaign per day — so campaign-level reports and [campaign incrementality](./campaign-incrementality.md) can read them. It arrives through a data pipeline you already have, and the channel each campaign counts towards is something you declare, never something Simba guesses.
 
 ## The shape
 
@@ -67,6 +67,7 @@ Over MCP: `list_campaigns`, `get_campaign_report` and `set_campaign_mapping`. Re
 
 ## Next steps
 
+- [Campaign incrementality](./campaign-incrementality.md) — incremental ROAS per campaign beside the platform's own ROAS
 - [Connect your warehouse](./connect-your-warehouse.md) — build the pipeline that reads the campaign mart
 - [Refresh data on a schedule](./refresh-data-on-a-schedule.md) — keep the facts current
 - [Simba MCP](./simba-mcp.md) — the tools agents use for the same reads and the map
