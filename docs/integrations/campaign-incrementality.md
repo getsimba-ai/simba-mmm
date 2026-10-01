@@ -83,6 +83,8 @@ Over MCP the tool is `get_campaign_incrementality(model_hash, start, end, level)
 
 ## Next steps
 
+- [Campaign budget recommendations](./campaign-budget-recommendations.md): explore a bounded allocation using inherited channel response shapes.
+
 - [Campaign data](./campaign-data.md) — bring the campaigns in and map them to channels
 - [Incrementality tests](../platform-guide/incrementality-tests.md) — record a test that can calibrate a channel's factor
 - [Simba MCP](./simba-mcp.md) — the tools agents use for the same reads
