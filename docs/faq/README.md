@@ -23,9 +23,9 @@ Key differentiators:
 - **Scenario planning** — test budget decisions with uncertainty bands before spending
 - **Risk-adjusted optimization** — budget allocation that accounts for diminishing returns and carryover
 
-→ [Why Simba?](../../sales/why-simba.md)
+→ [What is Simba?](../getting-started/what-is-simba.md)
 
-For detailed comparisons against specific tools, see the [Competitor Comparison](../../sales/competitor-comparison.md).
+For a comparison against a specific tool, [talk to us](https://getsimba.ai).
 
 ### Who is Simba for?
 

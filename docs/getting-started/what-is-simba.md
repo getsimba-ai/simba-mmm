@@ -60,7 +60,7 @@ You need to understand the incremental impact of each channel, including those t
 | **Data validation** | Manual QA | AI-powered Data Validator with 10 specialized checks |
 | **Updates** | Expensive re-engagement | Re-run models as new data arrives |
 
-For a detailed comparison against specific tools (Meta's Robyn, Google's Meridian, consulting models), see the [Competitor Comparison](../../sales/competitor-comparison.md).
+For a detailed comparison against specific tools (Meta's Robyn, Google's Meridian, consulting models), see the Competitor Comparison (ask us at https://getsimba.ai).
 
 ---
 
@@ -147,4 +147,4 @@ Or, if you want to set up your account first, see [Account Setup](account-setup.
 - [Data Requirements](../data/data-requirements.md) --- What data you need to get started
 - [Pricing and Plans](../pricing/README.md) --- Plan comparison and pricing details
 
-**Comparing Simba to alternatives?** See the [Competitor Comparison](../../sales/competitor-comparison.md) for detailed analysis against open-source libraries, SaaS platforms, and consulting firms.
+**Comparing Simba to alternatives?** See the Competitor Comparison (ask us at https://getsimba.ai) for detailed analysis against open-source libraries, SaaS platforms, and consulting firms.

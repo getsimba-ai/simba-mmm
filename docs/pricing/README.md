@@ -84,7 +84,7 @@ When your 28-day trial ends:
 - Cancel anytime
 - 28-day free trial available — no credit card required
 
-**Calculate your potential ROI:** Use the [ROI Calculator](../../sales/roi-calculator.md) to estimate the value Simba can deliver for your organization.
+**Want to estimate your return?** [Talk to us](https://getsimba.ai) and we will walk through it with your numbers.
 
 For specific pricing, visit [getsimba.ai](https://getsimba.ai) or contact our sales team at **info@pymc-labs.com**.
 
