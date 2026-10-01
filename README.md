@@ -151,7 +151,7 @@ Learn more: [Bayesian Modeling Explained](docs/core-concepts/bayesian-modeling.m
 | Enterprise security | Cyber Essentials, GDPR | Google Cloud | Self-hosted | Self-managed |
 | Time to first model | 15 minutes | Days–weeks | Days–weeks | Months |
 
-See [full competitor comparison](sales/competitor-comparison.md) for details.
+For a detailed comparison against other tools, [talk to us](https://getsimba.ai).
 
 ---
 

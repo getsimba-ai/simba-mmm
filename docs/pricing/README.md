@@ -84,12 +84,12 @@ When your 28-day trial ends:
 - Cancel anytime
 - 28-day free trial available — no credit card required
 
-**Calculate your potential ROI:** Use the [ROI Calculator](../../sales/roi-calculator.md) to estimate the value Simba can deliver for your organization.
+**Want to estimate your return?** [Talk to us](https://getsimba.ai) and we will walk through it with your numbers.
 
 For specific pricing, visit [getsimba.ai](https://getsimba.ai) or contact our sales team at **info@pymc-labs.com**.
 
-> [Start free](https://demo.simba-mmm.com/users/signup) | [Book a call](https://calendly.com/niall-oulton) | [Calculate ROI](../../sales/roi-calculator.md)
+> [Start free](https://demo.simba-mmm.com/users/signup) | [Book a call](https://calendly.com/niall-oulton)
 
 ---
 
-*See also: [What is Simba?](../getting-started/what-is-simba.md) | [Account Setup](../getting-started/account-setup.md) | [FAQ](../faq/README.md) | [Why Simba?](../../sales/why-simba.md)*
+*See also: [What is Simba?](../getting-started/what-is-simba.md) | [Account Setup](../getting-started/account-setup.md) | [FAQ](../faq/README.md)*
