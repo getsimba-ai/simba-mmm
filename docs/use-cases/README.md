@@ -34,7 +34,6 @@ Online, offline, and omnichannel retail measurement. Promotional impact separati
 
 Growth Dynamics used Simba to deliver weekly, transparent model updates to a high-end jeweler client --- replacing quarterly reporting with agile, omnichannel insights across digital and physical channels. [Read the full case study](./agencies.md#case-study-growth-dynamics-x-high-end-jeweler).
 
-→ [View all case studies](../../sales/case-studies/) — including representative examples of CPG budget optimization and D2C attribution transformation.
 
 ---
 

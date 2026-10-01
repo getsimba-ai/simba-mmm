@@ -88,8 +88,8 @@ When your 28-day trial ends:
 
 For specific pricing, visit [getsimba.ai](https://getsimba.ai) or contact our sales team at **info@pymc-labs.com**.
 
-> [Start free](https://demo.simba-mmm.com/users/signup) | [Book a call](https://calendly.com/niall-oulton) | [Calculate ROI](../../sales/roi-calculator.md)
+> [Start free](https://demo.simba-mmm.com/users/signup) | [Book a call](https://calendly.com/niall-oulton)
 
 ---
 
-*See also: [What is Simba?](../getting-started/what-is-simba.md) | [Account Setup](../getting-started/account-setup.md) | [FAQ](../faq/README.md) | [Why Simba?](../../sales/why-simba.md)*
+*See also: [What is Simba?](../getting-started/what-is-simba.md) | [Account Setup](../getting-started/account-setup.md) | [FAQ](../faq/README.md)*
