@@ -177,7 +177,7 @@ A warning rides along with an available result. The design stands; the warning s
 | Code | What the app says |
 |---|---|
 | `forecast_dependent` | This test compares actuals with the model's forecast. A change in the business after the training data, or a bias in the model, makes a false detection more likely. A geo split with control markets is robust to shocks that hit every market. (Every time-holdout result.) |
-| `heldout_level_bias` | The model's forecast was off on its held-out weeks by more than its own uncertainty allows. Treat the chance of detection as optimistic, or refit the model. |
+| `heldout_level_bias` | The model's forecast was off on its held-out weeks by more than its own uncertainty allows. Treat the chance of detection as optimistic, or refit the model. (It flags clear misses; it does not guarantee designs without it, see [Validation](#validation).) |
 | `no_out_of_sample_calibration` | No out-of-sample calibration was possible for this model. |
 | `forecast_uncertainty_lower_bound` | The forecast uncertainty term is a lower bound. |
 | `forecast_horizon_long` | The test starts well after the training history ends, so the forecast carries more uncertainty than the noise figure shows. |
@@ -291,23 +291,30 @@ The estimator is accepted by simulation before its results are shown, and the sp
 
 Scenarios cover autocorrelated noise, forecast gaps of 1, 4 and 13 periods (13 only with a held-out window), held-out windows of 8, 12 and 26 periods and none, and misspecified variants (a biased or overconfident posterior, a level shift in the held-out window, heteroscedastic and heavy-tailed noise, a seasonality mismatch, a changepoint after training); geo scenarios cover 6, 10 and 20 markets of unequal size with common shocks, spillover into controls, a structural break and a missing block of periods. Effects are null, the detectable effect, half and one and a half times it, and the negative of it. At least 5,000 replications per scenario and effect level. A scenario that fails is not rescued by changing the estimator afterwards: the fix is a domain restriction or a new frozen version with a fresh acceptance run.
 
-The design is calibrated to reject at or below alpha under correct specification; the measured rate is given in the table below. With a held-out window the test is conservative: the held-out window shares the forecast's level error with the test window, so the noise estimate grows exactly when the statistic is large, and the measured false-positive rate sits below alpha.
+The acceptance run used 5,000 replications per scenario on seeds reserved for it and used once, after the method was frozen. Under correct specification every scenario passes:
 
-**When the model's forecast is wrong.** A time holdout compares actuals with the model's forecast, so it is only as reliable as that forecast. Simulation of misspecified models measured how far the test overstates itself. Where the problem can be seen before the test (a model whose forecast missed its held-out weeks), the result carries the `heldout_level_bias` warning, and designs without that warning stay within the tolerances (false positives at most 0.05 above alpha, power at most 0.15 above the prediction). Three problems cannot be seen by anything known before the test, so they are stated here instead of gated:
+| Design | Scenarios | False-positive rate at alpha 0.10 | Power at the detectable effect (predicted 0.80) | Criterion |
+|---|---|---|---|---|
+| Time holdout with a held-out window | 27 | 0.044 to 0.104 | 0.752 to 0.827 | at or below alpha, within the Monte Carlo band |
+| Time holdout without a held-out window | 7 | 0.099 to 0.123 | 0.764 to 0.807 | within 0.02 of alpha, plus the band |
+| Geo split (6, 10 and 20 markets) | 4 | 0.089 to 0.105 | 0.790 to 0.807 | within 0.02 of alpha, plus the band |
 
-| Problem | False-positive rate at alpha 0.10 | Power for a pause overstated by |
-|---|---|---|
-| The model's forecast is biased by one posterior SD and the model has no held-out window | 0.238 | 0.300 |
-| The business shifts after the training data | 0.318 | 0.438 |
-| One market shifts during a geo test | 0.378 | 0.401 |
+With a held-out window the test is conservative: the held-out window shares the forecast's level error with the test window, so the noise estimate grows exactly when the statistic is large. Without one, the rate sits slightly above alpha, which is why designs without a held-out window are limited to short gaps and horizons (see [Supported models](#supported-models)).
 
-Refitting the model with a held-out window lets the first problem be checked. The second is why every time-holdout result carries `forecast_dependent`; a geo split with control markets is robust to shocks that hit every market, but not to one confined to a single market.
+**How to read these rates.** Alpha and power are averages over the model's own uncertainty about its forecast. When the forecast happens to be exactly right the false-positive rate is close to zero; when it is off it is higher. For any one business the rate can therefore lie anywhere from near zero to above alpha. Each scenario is one simulated world, so the ranges cover replication noise, not every kind of business.
 
-**Acceptance simulation results**
+**When the model's forecast is wrong (measured, not bounded).** A time holdout compares actuals with the model's forecast, so it is only as reliable as that forecast. Simulation of misspecified models measured how far the test overstates itself. There is no guarantee here; these are measured sizes:
 
-| Scenario | Evidence | Effect level | Replications | Predicted power | Empirical rate | 95% half-width | Pass |
-|---|---|---|---|---|---|---|---|
-| *To be filled from the acceptance report* | | | | | | | |
+| Problem | Detectable before the test? | False-positive rate at alpha 0.10 | Power for a pause (predicted 0.80) |
+|---|---|---|---|
+| The model's forecast is biased and the model has no held-out window | No | 0.251 | 0.470 |
+| The business shifts after the training data | No | 0.300 | 0.381 |
+| One market shifts during a geo test | No | 0.534 | 0.241 |
+| The forecast is biased, the model has a held-out window, and the model's own level uncertainty is small | Partly (`heldout_level_bias`) | 0.131 | 0.633 |
+| The model's held-out weeks were unusual | Partly (`heldout_level_bias`) | 0.121 | 0.942 (and 0.626 for an increase) |
+| Spillover into geo control markets | Not needed | 0.100 | 0.791 |
+
+The `heldout_level_bias` warning flags forecasts that missed their held-out weeks badly, but most of those designs already fail to reach the target power; it does not protect the designs that remain. Refitting the model with a held-out window lets a biased forecast be seen at all, and a geo split with control markets is robust to shocks that hit every market (not to one confined to a single market). Every time-holdout result carries `forecast_dependent` for this reason.
 
 ## Limitations
 
