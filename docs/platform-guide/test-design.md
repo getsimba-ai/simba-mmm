@@ -47,7 +47,7 @@ The designer works from what a saved model's artefact already holds, so it suppo
 - a Normal likelihood, or a StudentT likelihood whose tail is heavy enough to have a finite variance (the 3% HDI bound of its degrees of freedom must exceed 2.5; draws at 2 or below are excluded and counted, and the model is refused if they are more than 1% of the draws);
 - the chosen channel among the model's nonlinear media channels, with its adstock, saturation and transform settings resolvable, and not on the `LOG` variable transform;
 - a cost per unit that can be resolved from the training data (a spend channel's cost per unit is 1), or a schedule given in activity units;
-- a start date at least one period after the model's last training date and at most 13 weekly, 91 daily or 3 monthly periods after it.
+- a start date at least one period after the model's last training date and at most 13 weekly, 91 daily or 3 monthly periods after it when the model has a held-out window; without one, at most 4 weekly, 28 daily or 1 monthly periods after it, with the start gap plus the measurement window at most 20 weekly, 140 daily or 5 monthly periods. Candidate durations beyond that horizon are dropped and listed. The daily and monthly limits are scaled from the weekly ones and were not separately simulated.
 
 Both transform orders, the three adstock types and the four saturation types are supported.
 
@@ -176,6 +176,8 @@ A warning rides along with an available result. The design stands; the warning s
 
 | Code | What the app says |
 |---|---|
+| `forecast_dependent` | This test compares actuals with the model's forecast. A change in the business after the training data, or a bias in the model, makes a false detection more likely. A geo split with control markets is robust to shocks that hit every market. (Every time-holdout result.) |
+| `heldout_level_bias` | The model's forecast was off on its held-out weeks by more than its own uncertainty allows. Treat the chance of detection as optimistic, or refit the model. |
 | `no_out_of_sample_calibration` | No out-of-sample calibration was possible for this model. |
 | `forecast_uncertainty_lower_bound` | The forecast uncertainty term is a lower bound. |
 | `forecast_horizon_long` | The test starts well after the training history ends, so the forecast carries more uncertainty than the noise figure shows. |
@@ -287,9 +289,19 @@ The MCP tool reference is generated from the running server: see [`docs/tools.md
 
 The estimator is accepted by simulation before its results are shown, and the specification it implements is frozen before any acceptance simulation runs. Each replication builds a synthetic data-generating process, runs the production estimator end to end on finite data exactly as the product does (replay, evidence-series estimation, standard error, detectable effect, duration choice), then simulates the experiment and the pre-specified analysis and records whether it rejected. Noise is never generated from the standard-error formula and then checked against it. Within a scenario the posterior is held fixed and each replication draws the truth from it, so the posterior mean differs from the truth by a posterior-scale error every time; this is the posterior-averaged sense in which power is stated, and it is the primary pass criterion. A truth-conditional variant is reported beside it to show the size of the counterfactual-error term.
 
-Scenarios cover autocorrelated noise, forecast gaps of 1, 4 and 13 periods, held-out windows of 8, 12 and 26 periods and none, and misspecified variants (a biased or overconfident posterior, a level shift in the held-out window, heteroscedastic and heavy-tailed noise, a seasonality mismatch, a changepoint after training); geo scenarios cover 6, 10 and 20 markets of unequal size with common shocks, spillover into controls, a structural break and a missing block of periods. Effects are null, the detectable effect, half and one and a half times it, and the negative of it. At least 5,000 replications per scenario and effect level. A scenario that fails is not rescued by changing the estimator afterwards: the fix is a domain restriction or a new frozen version with a fresh acceptance run.
+Scenarios cover autocorrelated noise, forecast gaps of 1, 4 and 13 periods (13 only with a held-out window), held-out windows of 8, 12 and 26 periods and none, and misspecified variants (a biased or overconfident posterior, a level shift in the held-out window, heteroscedastic and heavy-tailed noise, a seasonality mismatch, a changepoint after training); geo scenarios cover 6, 10 and 20 markets of unequal size with common shocks, spillover into controls, a structural break and a missing block of periods. Effects are null, the detectable effect, half and one and a half times it, and the negative of it. At least 5,000 replications per scenario and effect level. A scenario that fails is not rescued by changing the estimator afterwards: the fix is a domain restriction or a new frozen version with a fresh acceptance run.
 
-The design is calibrated to reject at or below alpha under correct specification; the measured rate is given in the table below.
+The design is calibrated to reject at or below alpha under correct specification; the measured rate is given in the table below. With a held-out window the test is conservative: the held-out window shares the forecast's level error with the test window, so the noise estimate grows exactly when the statistic is large, and the measured false-positive rate sits below alpha.
+
+**When the model's forecast is wrong.** A time holdout compares actuals with the model's forecast, so it is only as reliable as that forecast. Simulation of misspecified models measured how far the test overstates itself. Where the problem can be seen before the test (a model whose forecast missed its held-out weeks), the result carries the `heldout_level_bias` warning, and designs without that warning stay within the tolerances (false positives at most 0.05 above alpha, power at most 0.15 above the prediction). Three problems cannot be seen by anything known before the test, so they are stated here instead of gated:
+
+| Problem | False-positive rate at alpha 0.10 | Power for a pause overstated by |
+|---|---|---|
+| The model's forecast is biased by one posterior SD and the model has no held-out window | 0.238 | 0.300 |
+| The business shifts after the training data | 0.318 | 0.438 |
+| One market shifts during a geo test | 0.378 | 0.401 |
+
+Refitting the model with a held-out window lets the first problem be checked. The second is why every time-holdout result carries `forecast_dependent`; a geo split with control markets is robust to shocks that hit every market, but not to one confined to a single market.
 
 **Acceptance simulation results**
 
@@ -305,6 +317,7 @@ Stated with every result:
 - Power assumes the pre-specified analysis and the stationarity of the evidence series into the test window.
 - The design does not model spillover, competitor response or novelty effects. Controls and other channels are assumed at their realised values over the window; future controls at unknown values are not simulated.
 - Under level B the noise basis is the model's own predictive distribution, its forecast-level term is a lower bound, and the power statement is posterior-averaged. It cannot detect misspecification.
+- A time holdout depends on the model's forecast: a change in the business after the training data or a biased forecast inflates false detections (see [Validation](#validation) for the measured sizes).
 
 And by scope: the designer proposes a design and does not run the experiment or analyse its result (record the result as described above, or in your own tool); it does not build synthetic controls; it offers no decision analysis beyond posterior-averaged assurance; and the log link, time-varying coefficients and VAR models are outside the supported family.
 
