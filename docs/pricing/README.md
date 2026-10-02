@@ -74,7 +74,7 @@ When your 28-day trial ends:
 - **Your models are preserved.** All models, results, and scenarios remain in your account in read-only mode.
 - **You can still view results** but cannot fit new models, run optimizations, or create scenarios.
 - **Upgrade anytime** to restore full access. Your data and models carry over — nothing is lost.
-- If you choose not to upgrade, your data is retained for 90 days before being deleted. You can request earlier deletion by contacting support.
+- For a data-deletion request or confirmation of the retention arrangements for your account, contact support.
 
 ---
 

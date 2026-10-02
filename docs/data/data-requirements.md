@@ -76,7 +76,7 @@ A **hierarchy column** is always required. It identifies which brand, region, or
 
 Simba accepts data in **CSV format** (.csv) only.
 
-- **Maximum file size:** 50MB
+- **Maximum file size:** 10 MB
 - **MIME types accepted:** text/csv, application/csv, text/plain, application/vnd.ms-excel
 - Excel (.xlsx) files are **not supported** --- export to CSV before uploading.
 

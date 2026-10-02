@@ -28,7 +28,7 @@ Upload your dataset and optionally run the [Data Validator](./data-auditor.md) t
 |---|---------|-------------|
 | 1 | **Page header** | Top-level section indicator for the wizard step |
 | 2 | **Data Source Configuration panel** | Left column showing required data types: time series dates, media variables, cost factors, multiplier variable, and KPI metrics |
-| 3 | **CSV upload area** | Drag & drop or click to upload. **CSV files only** (.csv), 50 MB maximum. Excel (.xlsx) is not supported |
+| 3 | **CSV upload area** | Drag & drop or click to upload. **CSV files only** (.csv), 10 MB maximum. Excel (.xlsx) is not supported |
 | 4 | **Use Demo File** | Loads a sample 2-year marketing dataset for testing the platform without your own data |
 | 5 | **Start Validator Agent** | Runs the Data Validator on your uploaded data using AI (disabled until a file is uploaded) |
 | 6 | **Continue to Model Selection** | Proceeds to Step 2 (disabled until a file is uploaded) |

@@ -143,7 +143,7 @@ Learn more: [Bayesian Modeling Explained](docs/core-concepts/bayesian-modeling.m
 |---|---|---|---|---|
 | No-code UI | Yes | No (Python) | No (R) | No |
 | Bayesian framework | Yes (PyMC) | Yes (lightweight Bayesian) | Ridge regression | Varies |
-| Uncertainty quantification | 94% HDI on all outputs | Limited | No | Varies |
+| Uncertainty quantification | Intervals on supported outputs | Limited | No | Varies |
 | Budget optimization | Built-in, risk-adjusted | Separate | Basic | Build your own |
 | Lift test integration | Yes (likelihood observations) | Yes | Yes (calibration) | Build your own |
 | Portfolio / multi-brand | Built-in | No | No | Build your own |

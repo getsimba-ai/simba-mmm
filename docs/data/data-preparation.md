@@ -23,7 +23,7 @@ Marketing data typically lives across multiple platforms. Gather data from:
 - **Business systems** --- Revenue, sales, or conversion data from your CRM, ERP, or analytics platform
 - **External data** --- Pricing, weather, economic indicators
 
-Combine everything into a **single CSV file** with consistent time periods. Simba accepts CSV format only (50MB max). Excel (.xlsx) is not supported --- export to CSV before uploading.
+Combine everything into a **single CSV file** with consistent time periods. Simba accepts CSV format only (10 MB max). Excel (.xlsx) is not supported --- export to CSV before uploading.
 
 ---
 
@@ -128,7 +128,7 @@ Before uploading to Simba:
 - [ ] No negative values in spend, price, multiplier, or distribution columns
 - [ ] No duplicate time periods
 - [ ] Currency and units are consistent throughout
-- [ ] File size is under 50MB
+- [ ] File size is under 10 MB
 
 ---
 

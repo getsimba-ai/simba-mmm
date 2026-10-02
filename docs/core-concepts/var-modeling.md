@@ -1,6 +1,6 @@
 # VAR Modeling --- Bayesian Vector AutoRegression for Marketing
 
-> **In brief:** VAR captures how channels influence each other over time — for example, TV builds brand awareness which lifts branded search which drives revenue. In Simba, VAR is a separate model type available on Pro and Scale plans that reveals these indirect, long-term pathways.
+> **In brief:** VAR captures how channels influence each other over time — for example, TV builds brand awareness which lifts branded search which drives revenue. In Simba, VAR is a separate model type available on Trial, Pro and Scale plans that reveals these indirect, long-term pathways.
 
 Vector AutoRegression (VAR) is a multi-equation time series model that captures dynamic interactions between business outcomes and brand metrics over time. While a standard Marketing Mix Model estimates one equation (media → revenue), a Bayesian VAR models a system of interacting variables --- revenue, brand awareness, brand search, and other brand equity metrics --- revealing the indirect and long-term pathways through which marketing drives business results.
 

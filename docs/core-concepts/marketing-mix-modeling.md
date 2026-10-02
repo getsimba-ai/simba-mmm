@@ -70,7 +70,7 @@ Bayesian MMM, the approach Simba uses, improves on traditional MMM in several cr
 
 ### 1. Full Uncertainty Quantification
 
-Every parameter estimate comes with a **credible interval** --- a range of plausible values given the data. Instead of "TV drives $2.1M in incremental revenue," you get "TV drives between $1.6M and $2.7M with 94% probability." This lets you make risk-aware decisions. Learn more in [Bayesian Modeling](./bayesian-modeling.md).
+The coefficient posterior table includes **94% credible intervals**, describing parameter uncertainty under the fitted model. Revenue, contribution and prediction outputs have their own interval definitions and availability. Inspect the relevant output before quoting an interval. Learn more in [Bayesian Modeling](./bayesian-modeling.md).
 
 ### 2. Prior Knowledge Integration
 
@@ -95,14 +95,14 @@ Bayesian MMM produces full predictive distributions, not just point forecasts. W
 
 ## How Simba Implements MMM
 
-Simba is a no-code Bayesian MMM platform built on **PyMC-Marketing**, the leading open-source library for marketing science. Here is how the platform brings MMM to life:
+Simba is a no-code Bayesian MMM platform built on **PyMC**, using Simba's own model engine. Here is how the platform brings MMM to life:
 
 ### The Four-Step Workflow
 
 ![Simba four-step workflow](./images/simba-workflow.png)
 
 
-1. **Audit** --- Upload your data and Simba validates it automatically: checking for missing values, date gaps, outliers, and structural issues. The platform surfaces potential problems before you build a model.
+1. **Audit** --- Upload your data, then choose **Start Validator Agent** and choose a validation AI model to request checks for missing values, date gaps, outliers and structural issues. Review the findings before building a model; uploading alone does not start this agent.
 
 2. **Measure** --- Configure your model through the UI. Select your target variable, choose channels, set [priors](./priors-and-distributions.md), and define [saturation](./saturation-curves.md) and [adstock](./adstock-effects.md) structures. Simba fits a full Bayesian model and returns posterior distributions over every parameter.
 

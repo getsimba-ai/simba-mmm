@@ -68,7 +68,7 @@ With Simba's automated pipeline, agencies can deliver weekly model refreshes to 
 
 ### Fully Transparent Client Trust
 
-When clients ask "how does this work?", you can show them. Every [prior is visible](../core-concepts/priors-and-distributions.md), every [saturation curve is interpretable](../core-concepts/saturation-curves.md), and every result comes with [94% HDI uncertainty intervals](../core-concepts/bayesian-modeling.md). This transparency differentiates your agency from competitors using black-box tools.
+When clients ask "how does this work?", you can show them. Every [prior is visible](../core-concepts/priors-and-distributions.md), every [saturation curve is interpretable](../core-concepts/saturation-curves.md), and supported results include [uncertainty intervals](../core-concepts/bayesian-modeling.md), with the interval definition and availability stated for each output. This transparency differentiates your agency from competitors using black-box tools.
 
 ---
 

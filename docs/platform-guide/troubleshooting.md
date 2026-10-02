@@ -8,7 +8,7 @@ This page covers the most common issues users encounter in Simba, organized by c
 
 | Symptom | Likely Cause | Fix |
 |---------|-------------|-----|
-| Upload fails with "invalid file" | File is not CSV, or exceeds 50MB limit | Save as `.csv` (not `.xlsx`). If file is too large, aggregate to weekly granularity or reduce the date range. See [Data Requirements](../data/data-requirements.md). |
+| Upload fails with "invalid file" | File is not CSV, or exceeds 10 MB limit | Save as `.csv` (not `.xlsx`). If file is too large, aggregate to weekly granularity or reduce the date range. See [Data Requirements](../data/data-requirements.md). |
 | Columns not detected correctly | Column names don't match expected patterns | Rename columns to clear names (e.g., `tv_spend`, `revenue`). The [semantic matcher](smart-defaults.md) works best with descriptive names. |
 | Date column not recognized | Date format is unusual or inconsistent | Use `YYYY-MM-DD` format. Simba supports 10+ formats but inconsistent formats within a column will fail. See [Data Preparation](../data/data-preparation.md). |
 | "Too few observations" warning | Fewer than ~52 rows of data | The model needs at least 1 year of data (52 weekly rows or equivalent) to estimate seasonality and media effects reliably. Ideally use 2+ years. |
@@ -75,7 +75,7 @@ This page covers the most common issues users encounter in Simba, organized by c
 | Symptom | Likely Cause | Fix |
 |---------|-------------|-----|
 | Can't log in | Wrong credentials or SSO not configured | Try password reset. For SSO, contact your admin to ensure your email domain is configured. See [Account Setup](../getting-started/account-setup.md). |
-| Features are greyed out / locked | Plan limitations | Some features (VAR models, portfolio analysis) require Enterprise or higher plans. Check [Pricing](../pricing/README.md) for plan comparison. |
+| Features are greyed out / locked | Plan limitations | VAR is enabled on Trial, Pro and Scale, but not Analyst. Portfolio availability and limits also depend on your plan. Check [Pricing](../pricing/README.md) and your account usage for the applicable limits. |
 | Model disappeared | Accidental deletion or plan expiry | Check the Model Warehouse archive. If your trial expired, models are preserved in read-only mode — upgrade to regain editing access. |
 
 ---

@@ -7,7 +7,7 @@ Simba requires marketing and business data to build accurate models. This sectio
 ## Guides
 
 ### [Data Requirements](./data-requirements.md)
-What data you need, supported formats (CSV only, 50MB max), date formats, and minimum requirements. Covers the six variable types: date, target KPI, media, cost, multiplier, and hierarchy --- with Simba's semantic matcher auto-detecting columns from their names.
+What data you need, supported formats (CSV only, 10 MB max), date formats, and minimum requirements. Covers the six variable types: date, target KPI, media, cost, multiplier, and hierarchy --- with Simba's semantic matcher auto-detecting columns from their names.
 
 ### [Data Preparation](./data-preparation.md)
 Best practices for cleaning and formatting. Covers time alignment, missing value handling (zeros for no-spend, resolve all NaN before fitting), negative value rules, and the Data Validator's 10 automated checks.
@@ -27,7 +27,7 @@ The 15 channel categories Simba auto-detects (TV, digital, social, search, video
 
 Before uploading data to Simba, ensure you have:
 
-- [ ] A **single CSV file** (not Excel) under 50MB
+- [ ] A **single CSV file** (not Excel) under 10 MB
 - [ ] A **date column** with a recognized name (date, week, month, or period)
 - [ ] A **target KPI** column (revenue, sales, units, or volume)
 - [ ] A **multiplier column** (average price, or all 1s if KPI is already revenue)

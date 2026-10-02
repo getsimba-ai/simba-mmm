@@ -35,7 +35,7 @@ The optimizer maximizes:
 
 Where:
 
-- **mean_response** is the expected total revenue across all channels, averaged over all posterior samples (~3,000 samples by default).
+- **mean_response** is the expected total revenue across all channels, averaged over the posterior samples used by the optimizer; the draw count depends on the fitted model.
 - **std_response** is the standard deviation of the response distribution across posterior samples --- a measure of how uncertain the predicted return is.
 - **gamma** is the risk aversion parameter that controls the tradeoff between maximizing return and minimizing uncertainty.
 
@@ -76,7 +76,7 @@ With gamma > 0, the optimizer sees the full posterior distribution and naturally
 A critical difference between Simba's optimizer and simpler approaches is that it uses the **full posterior distribution**, not just point estimates.
 
 ![Posterior-aware optimization](./images/optimization-posterior-aware.png)
-*Left: each thin line is a response curve from one posterior sample --- with its own alpha, decay rate, and coefficient. The optimizer evaluates all ~3,000 samples simultaneously to account for parameter uncertainty. Right: at the optimal spend level, the distribution of possible responses is shown with its 94% HDI.*
+*Left: each thin line is a response curve from one posterior sample --- with its own alpha, decay rate, and coefficient. The optimizer evaluates retained posterior draws to account for parameter uncertainty; their number depends on the fitted model. Right: at the optimal spend level, the distribution of possible responses is shown with its 94% HDI.*
 
 For each candidate allocation, the optimizer:
 
@@ -168,7 +168,7 @@ Both use the same underlying model and response curves. The optimizer finds the 
 
 - Budget optimization finds the allocation where **marginal returns are equalized** across all channels --- no dollar can be moved to improve total return.
 - The optimizer maximizes **mean response minus gamma x standard deviation**, balancing expected return against uncertainty.
-- It uses the **full posterior distribution** (~3,000 samples), not point estimates, ensuring uncertainty is respected in every allocation decision.
+- It uses **retained posterior draws** to calculate expected response and response variability. The draw count depends on the sampling configuration and fitted artifact.
 - **Saturation curves** are what make optimization possible --- without diminishing returns, the optimizer would trivially put everything in one channel.
 - **Risk aversion (gamma)** controls diversification: higher gamma spreads budget more evenly across channels with reliable estimates.
 - Constraints support fixed total budgets and per-channel min/max bounds.

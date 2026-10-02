@@ -8,14 +8,14 @@ The Data Validator is an AI agent that inspects your CSV dataset against the req
 
 ## Triggering Validation
 
-Upload your CSV file (50MB max --- Excel is not supported), then click the **Start Validator Agent** button to open the model selection dialog.
+Upload your CSV file (Excel is not supported), then click the **Start Validator Agent** button to open the model selection dialog.
 
 ![Triggering the Data Validator](./images/dv-trigger.png)
 
 | # | Element | Description |
 |---|---------|-------------|
 | 1 | **Data Source Configuration header** | Step 1 of the model creation wizard --- upload your dataset here before any modeling |
-| 2 | **CSV upload area** | Drag-and-drop or click to browse. Accepts CSV files only (.csv), maximum 50 MB. Excel (.xlsx) is not supported |
+| 2 | **CSV upload area** | Drag-and-drop or click to browse. Accepts CSV files only (.csv). Excel (.xlsx) is not supported. For subsequent model creation, keep the file within the 10 MB model-upload limit |
 | 3 | **Start Validator Agent button** | Opens the model selection dialog below. Disabled until a file is uploaded. The **Use Demo File** button (left) loads a sample dataset for testing |
 | 4 | **Model selection dialog** | Choose between two AI models for validation: **Claude Haiku 4.5** (fast validation, 2-3 minutes, best for standard datasets) or **Claude Sonnet 4.5** (deep analysis, 4-6 minutes, best for complex datasets with multiple hierarchies or unusual patterns) |
 

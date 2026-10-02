@@ -31,7 +31,7 @@ Fourier-based seasonality (default n=2 terms), three trend types (smooth HSGP is
 Bayesian Vector AutoRegression for capturing long-term brand effects. Models the endogenous system (revenue, brand awareness, brand search) driven by exogenous media spend, with Minnesota prior shrinkage to stabilize estimates from noisy brand data. Produces impulse response functions, variance decomposition, and long-run multipliers that enhance MMM ROI estimates.
 
 ### [Budget Optimization](./budget-optimization.md)
-How to allocate budget across channels to maximize total return. Covers the marginal equalization principle, mean-variance optimization with risk aversion (gamma), posterior-aware allocation using all ~3,000 posterior samples, per-channel constraints, and portfolio-level optimization across brands.
+How to allocate budget across channels to maximize total return. Covers the marginal equalization principle, mean-variance optimization with risk aversion (gamma), posterior-aware allocation using draws retained by the fitted model, per-channel constraints, and portfolio-level optimization across brands.
 
 ### [Halo Effects](./halo-effects.md)
 How advertising for one brand can lift sales of related brands in a portfolio. Halo channels receive a fixed small coefficient (0.005), while trademark channels receive a 75% reduction in their calculated prior.

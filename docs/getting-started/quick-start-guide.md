@@ -176,7 +176,7 @@ Congratulations — you have built, interpreted, and optimized your first Bayesi
 
 | Issue | Solution |
 |---|---|
-| **Data upload fails** | Check that your file is a valid CSV with a header row and is under 50MB. Excel (.xlsx) is not supported. See [Data Requirements](../data/data-requirements.md). |
+| **Data upload fails** | Check that your file is a valid CSV with a header row and is under 10 MB. Excel (.xlsx) is not supported. See [Data Requirements](../data/data-requirements.md). |
 | **Data Validator flags critical issues** | Address the flagged issues in your data before running the model. The audit report includes specific guidance for each category. |
 | **Model takes too long** | Large datasets or complex configurations increase run time. Try reducing the number of channels, using weekly instead of daily data, or disabling seasonality/trend. |
 | **Model status "Failed"** | Check the error message. Common causes: too few observations for the number of parameters, conflicting priors (e.g., very tight priors that disagree with data), or data quality issues the validator didn't catch. Fix the underlying issue and re-run. |

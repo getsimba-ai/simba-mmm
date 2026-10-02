@@ -87,7 +87,7 @@ PyMC-Marketing is the leading open-source library for Bayesian marketing analyti
 
 ### How does the Data Validator work?
 
-The Data Validator is an intelligent agent that runs automatically when you upload data. It validates your data structure, detects anomalies and missing values, checks schema integrity, and assigns a **Data Health Score** (0–100%) so you know exactly how reliable your inputs are before modeling.
+After uploading a CSV, choose **Start Validator Agent** and choose a validation AI model to request a data review. The agent reports issues and suggestions for you to inspect before modelling. Uploading alone does not start the agent, and its findings do not certify that the data is suitable for causal inference.
 
 → [Data Validator Guide](../platform-guide/data-auditor.md)
 
