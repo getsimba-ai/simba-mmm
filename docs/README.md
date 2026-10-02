@@ -19,6 +19,7 @@ Simba is a no-code MMM platform built on [PyMC](https://www.pymc.io/) by the tea
 | Keep my data refreshed automatically | [Refresh data on a schedule](./integrations/refresh-data-on-a-schedule.md) |
 | Bring campaign and ad-set data in and map it to my channels | [Campaign data](./integrations/campaign-data.md) |
 | See incremental ROAS per campaign beside the platform's own ROAS | [Campaign incrementality](./integrations/campaign-incrementality.md) |
+| Explore bounded daily-equivalent campaign budgets | [Campaign budget recommendations](./integrations/campaign-budget-recommendations.md) |
 | Build a model on one pipeline version | [Build a model from a pipeline version](./integrations/model-from-a-pipeline-version.md) |
 | Read actual KPI, spend and media units per period | [Read model results](./integrations/read-model-results.md) |
 | Run the optimizer from an agent | [Run the optimizer from an agent](./integrations/optimize-over-mcp.md) |
