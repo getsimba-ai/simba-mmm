@@ -119,7 +119,7 @@ Step-by-step guides for every feature in the Simba interface.
 
 Everything about preparing data for Simba --- from export to upload.
 
-- **[Data Requirements](./data/data-requirements.md)** --- What you need: CSV format (50MB max), date column, target KPI, media + cost pairs, 52+ weeks recommended
+- **[Data Requirements](./data/data-requirements.md)** --- What you need: CSV format (10 MB max), date column, target KPI, media + cost pairs, 52+ weeks recommended
 - **[Data Preparation](./data/data-preparation.md)** --- Cleaning, formatting, handling missing values, and time alignment
 - **[Data Validation](./data/data-validation.md)** --- How the Data Validator's 10 automated checks assess your data quality
 - **[Exporting from Ad Platforms](./data/exporting-from-platforms.md)** --- Google Ads, Meta, GA4, TikTok, DV360, TV, and OOH export guides
@@ -158,7 +158,7 @@ How different teams and industries use Simba.
 
 ```
  CSV Upload ──→ Data Validator ──→ Model Configuration ──→ Bayesian Fitting
-                 (10 checks)       (priors, adstock,        (PyMC-Marketing)
+                 (10 checks)       (priors, adstock,        (PyMC)
                                     saturation, trend)
                                                                   │
                 ┌─────────────────────────────────────────────────┘
@@ -169,7 +169,7 @@ How different teams and industries use Simba.
           ROAS, 94% HDI)     portfolio-level)        carryover-aware)
 ```
 
-**Every output includes uncertainty.** Simba uses the full posterior distribution (~3,000 samples) for optimization and forecasting --- not point estimates.
+**Check the uncertainty supplied with each output.** Supported results include intervals with their definition and availability stated. Optimisation and forecasting use retained posterior draws; the number depends on the fitted model and sampling configuration.
 
 ---
 

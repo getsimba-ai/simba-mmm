@@ -1,6 +1,6 @@
 # Getting Started with Simba
 
-Simba is a fully transparent Bayesian Marketing Mix Modeling platform. Every assumption is visible, every prior is configurable, and every result comes with calibrated uncertainty intervals. No code required.
+Simba is a fully transparent Bayesian Marketing Mix Modeling platform. Every assumption is visible, every prior is configurable, and supported outputs include uncertainty intervals with their definition and availability stated. No code required.
 
 ---
 

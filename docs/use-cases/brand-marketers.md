@@ -11,7 +11,7 @@ Common pain points:
 - **Optimization paralysis** — Too many channels, not enough clarity on where the next dollar should go
 
 ![Channel ROAS with credible intervals](./images/brand-roas-comparison.png)
-*Simba provides ROAS estimates for every channel with 94% credible intervals — showing not just the best estimate, but the range of plausible values. This lets you make budget decisions with known uncertainty rather than false precision.*
+*Simba reports channel ROAS estimates with uncertainty where the fitted artifact supplies it. Check the interval definition and availability for the output you are using; a missing interval does not mean zero uncertainty.*
 
 ## How Simba Helps
 

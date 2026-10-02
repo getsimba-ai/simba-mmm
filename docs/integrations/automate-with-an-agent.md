@@ -1,141 +1,111 @@
 # Recurring automation: a weekly refresh and report from an external agent
 
-An agent outside Simba can run the whole weekly cycle on its own: refresh the data, fit a model on the new version, wait for it, and read the numbers for a report. Any scheduler that can run an MCP client or plain HTTP will do: a scheduled Claude Code job, a script that calls the Claude API with its MCP connector, or a cron job in Python.
+An external scheduler can refresh a pipeline, freeze its output in a Studies recipe, launch an authorised fit and read its results. The scheduler supplies the cadence, credentials, durable job state and model-authoring rules. Simba does not automatically approve the resulting model or select it as Champion.
 
-Every step below is one MCP tool and one HTTP request on the same API, with the same key and the same scopes. The MCP tool reference is generated from the running server: see [`docs/tools.md` in the simba-mcp repository](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tools.md) for the exact parameters of `run_pipeline`, `get_pipeline_run`, `create_model`, `get_model_status`, `get_model_results` and `get_data_report`. Connecting a client is covered in [Simba MCP](./simba-mcp.md).
+This guide describes the current pipeline-version workflow. New pipeline runs store their output as a `PipelineVersion`; they do not create an uploaded-file dataset. Do not discover a fresh version by searching `list_uploads` for a generated filename.
 
-## The job at a glance
+## Prepare the job
 
-| Step | MCP tool | HTTP | Scope |
-|---|---|---|---|
-| Refresh the data | `run_pipeline`, `get_pipeline_run` | `POST` / `GET /api/v1/pipelines/{pipeline_ref}/runs` | `create:models` |
-| Find the new dataset | `list_pipeline_versions`, `list_uploads` | `GET /api/v1/pipelines/{pipeline_ref}/versions`, `GET /api/v1/ingest` | `ingest` |
-| Create the model once | `list_models`, `create_model` | `GET` / `POST /api/v1/models` | `read:models`, `create:models` |
-| Wait for the fit | `get_model_status` | `GET /api/v1/models/{model_hash}/status` | `read:models` |
-| Keep the model | `save_model` | `POST /api/v1/models/{model_hash}/save` | `create:models` |
-| Read the report | `get_model_results`, `get_data_report` | `GET /api/v1/models/{model_hash}/results`, `GET /api/v1/datasets/{dataset_id}/report` | `read:results`, `read:models` |
+Use a synthetic pipeline, a study in a project you own, and an explicit active quality policy for your rehearsal. Replace every example id with an id returned from your account. Author and validate the model configuration before enabling a recurring fit. A source template provides bytes and defaults, not a validated specification.
 
-## Refresh the data
+Keep an API key in the scheduler's secret store. The workflow needs `ingest` for pipeline discovery, `read:models` for templates and study reads, `create:models` for pipeline runs, drafts, publication and model launches, and `read:results` for the report. Keys expire and require rotation. Creating a key, choosing scientific thresholds and authorising recurring compute are setup decisions, not actions the example performs.
 
-Either let the pipeline's own schedule run first (see [Refresh data on a schedule](./refresh-data-on-a-schedule.md)) or start a run yourself with `run_pipeline(pipeline_ref="ab12cd34ef")` and poll `get_pipeline_run(pipeline_ref="ab12cd34ef", run_id=41)` until `status` is `succeeded` or `failed`, as described on [Connect your warehouse](./connect-your-warehouse.md). Only one run of a pipeline happens at a time: if the schedule is already running it, `run_pipeline` answers `409 run_in_progress` with that run's `run_id`, and you poll that one instead.
+## Refresh and pin the exact version
 
-A successful run saves a new version and registers its output as a dataset named `{pipeline name}_v{version}.csv` with `source_type` `pipeline`; any character in the pipeline name other than a letter, a digit, `-` or `_` becomes `_`, leading and trailing `_` are dropped, and an empty name becomes `pipeline`, so a pipeline named `weekly_media` gives `weekly_media_v12.csv`. Match the run's `version_id` to a row of `list_pipeline_versions` (newest first, so with the schedule alone the first row is the refreshed data) to get the version number, then find the dataset id with `list_uploads(name="weekly_media_v12.csv")`. That id is the `uploaded_file_id` that `create_model` needs.
-
-## Create the model once
-
-Today `create_model` has no submission key: every call starts a new fit and returns a new `model_hash`, so a job retried after a lost response would fit twice. Give each week's model a deterministic `name` (it is honoured verbatim, apart from HTML tags being stripped) and look for it before creating. API-created models start unsaved, so list with `include_unsaved=True`; the listing is newest first.
-
-```
-list_models(include_unsaved=True)
-create_model(uploaded_file_id=57, name="Weekly MMM 2026-W40",
-             date_column="date", kpi_column="revenue", hierarchy_column="brand",
-             channels=[{"name": "TV", "activity_column": "tv_activity", "spend_column": "tv_spend"},
-                       {"name": "Search", "activity_column": "search_activity", "spend_column": "search_spend"},
-                       {"name": "Social", "activity_column": "social_activity", "spend_column": "social_spend"}],
-             total_media_effect="Retail")
-→ {"model_hash": "f835671a25", "status": "pending", "name": "Weekly MMM 2026-W40"}
+```text
+run_pipeline(pipeline_ref="<your pipeline hash>")
+get_pipeline_run(pipeline_ref="<your pipeline hash>", run_id=<returned run_id>)
 ```
 
-If the weekly fit belongs to a study, launch it there instead: `launch_study_run(study_id=..., revision_id=..., policy_id=..., submission_key="weekly-2026-W40")` takes a caller-generated `submission_key`. Repeating the call with the same key returns the same run; the same key with a different revision or policy is refused with `409`. A revision on the refreshed data starts from `get_recipe_draft_template(pipeline_version_id=212)`; the rest is in [A Studies workflow](./simba-mcp.md#a-studies-workflow).
+Poll until `succeeded` or `failed`. A `409 run_in_progress` can identify an existing run to follow; other refusals must be handled according to their code. Persist the successful run's `version_id`. Do not substitute the newest listed version, which another job may have created.
 
-## Wait for the fit, then read the report
+After an ambiguous pipeline-start response without a run id, stop the scheduler and ask a signed-in person to inspect the pipeline history before starting another run. This history is currently exposed in the builder, not as an MCP or API-key history operation. Pipeline starts do not have the Studies launch submission key. Configure the external scheduler to prevent overlapping executions and keep its checkpoint across retries.
 
+## Author, freeze and launch
+
+```text
+get_recipe_draft_template(family="mmm", pipeline_version_id=<persisted version_id>)
+create_recipe_draft(study_id="<your study id>", draft_id="<persisted UUID>",
+                    name="Weekly synthetic refresh", snapshot=<complete authored snapshot>)
+publish_recipe_draft(draft_id="<same UUID>", expected_version=<returned draft version>,
+                     publication_id="<persisted publication UUID>", reason="Weekly refresh")
+get_launch_eligibility(study_id="<your study id>", revision_id="<returned revision id>",
+                       policy_id="<your active policy id>")
+launch_study_run(study_id="<your study id>", revision_id="<same revision id>",
+                 policy_id="<same policy id>", submission_key="weekly-synthetic-2026-W40")
 ```
-get_model_status(model_hash="f835671a25")   → {"status": "under way", "progress": 40, "error": null, ...}
-```
 
-Keep polling while `status` is `pending` or `under way`; `complete` is the outcome you want, `failed` carries the message in `error`, and any other status (a cancelled fit is `revoked`, one that ran out of time is `time exceeded`) also ends the wait. Polling every 10 seconds stays well inside the per-key rate limit. Then file the model with `save_model(model_hash="f835671a25", name="Weekly MMM 2026-W40")` so it appears in the default listing and is not pruned as an unsaved model; at the saved-models cap (the same cap as in the app) the save is refused with `400` and `error_type` `saved_limit`.
+Copy the complete template snapshot. Configure the outcome, date, hierarchy, media roles, units, priors and sampling using your reviewed authoring rules. Preserve the source bytes and origin of the pinned version. A recurring integration must check schema drift and stop when those rules no longer apply. The template's first rows are a preview, not the full source. See [Build a model from a pipeline version](./model-from-a-pipeline-version.md) and [Studies](../platform-guide/studies.md).
 
-```
-get_model_results(model_hash="f835671a25", sections="channel_summary,model_stats")
-get_data_report(dataset_id=57, start="2026-09-07", end="2026-10-04", granularity="week",
-                group_by="channel", metrics=["kpi", "spend"], roles={"revenue": "kpi", "brand": "hierarchy"})
-```
+Persist the draft UUID, exact authored snapshot, publication UUID, returned revision ids, policy id and launch key before the associated writes. Publication can return multiple revisions, one per prepared brand: select and record the intended revision explicitly, or manage each as a separate job. Do not silently choose the first.
 
-`channel_summary` gives one row per channel with `Channel`, `Sales`, `Spend`, `Revenue` and `ROI`; `model_stats` gives the fit diagnostics. The data report gives the actual weekly KPI and spend from the dataset, and its `data_through` says how fresh the data is. Windows, roles and the aggregation rules are on [Report sales and media data](./report-sales-and-media-data.md).
+A repeated draft creation with the same UUID and content returns the existing draft; changed content conflicts. Replaying the same publication request returns the same revisions. Launch retries with the same study, submitter, revision, policy and `submission_key` return the existing run without reserving a second fit. A different revision or policy under the same key returns `409 submission_key_conflict`. Do not generate a fresh key merely because a response was lost. A model-name lookup is not an idempotency guarantee.
 
-## The key the job needs
+## Runnable launch and report stage
 
-Create the key under Profile → API Keys, as the user who owns the pipeline, with the scopes `ingest`, `read:models`, `read:results` and `create:models`; `optimize` and `scenario` are not needed for this job. A key sees only its owner's pipelines and models. Every key expires: 90 days by default, and one year at most, so put the rotation date in the scheduler's calendar. There is no MCP tool for creating or revoking keys. Keep the key in the scheduler's secret store, never in a prompt or in source control.
+The following Python example requires `requests`, an already published synthetic revision and an active policy. It **starts a new fit** on its first successful submission. Run it only after authorising that compute. It is the launch/report stage, not a complete unattended authoring integration. The pipeline refresh and version-to-snapshot authoring steps above must be implemented and validated for your data before scheduling the whole cycle.
 
-## A complete example
-
-A cron job in Python, using synthetic data with columns `date`, `revenue`, `brand` and `{channel}_activity` / `{channel}_spend` for TV, Search and Social.
+Set `SIMBA_API_URL` to the service origin, `SIMBA_API_KEY` from a secret store, and `SIMBA_STUDY_ID`, `SIMBA_REVISION_ID`, `SIMBA_POLICY_ID`, `SIMBA_SUBMISSION_KEY` to your persisted job values. Keep the same values on retry.
 
 ```python
-import datetime as dt, json, re, time, requests
+import json
+import os
+import time
+import requests
 
-BASE = "https://demo.simba-mmm.com/api/v1"
-HEADERS = {"Authorization": "Bearer simba_sk_..."}   # from the scheduler's secret store
-PIPELINE = "ab12cd34ef"                               # pipeline_hash from list_pipelines
-MODEL_NAME = f"Weekly MMM {dt.date.today():%G-W%V}"   # e.g. Weekly MMM 2026-W40
+base = os.environ["SIMBA_API_URL"].rstrip("/") + "/api/v1"
+study = os.environ["SIMBA_STUDY_ID"]
+payload = {
+    "revision_id": os.environ["SIMBA_REVISION_ID"],
+    "policy_id": os.environ["SIMBA_POLICY_ID"],
+    "submission_key": os.environ["SIMBA_SUBMISSION_KEY"],
+}
+session = requests.Session()
+session.headers["Authorization"] = "Bearer " + os.environ["SIMBA_API_KEY"]
 
-def get(path, **params):
-    r = requests.get(f"{BASE}{path}", headers=HEADERS, params=params)
-    r.raise_for_status()
-    return r.json()
-def wait(path, running):
-    while (obj := get(path))["status"] in running:
-        time.sleep(10)
-    return obj
+def request(method, path, **kwargs):
+    response = session.request(method, base + path, timeout=60, **kwargs)
+    response.raise_for_status()
+    return response.json()
 
-# 1. Refresh the data. A run already going answers 409 with its run_id: follow it.
-r = requests.post(f"{BASE}/pipelines/{PIPELINE}/runs", headers=HEADERS, json={})
-if r.status_code not in (202, 409): r.raise_for_status()   # 202 queued, 409 run_in_progress
-run = wait(f"/pipelines/{PIPELINE}/runs/{r.json()['run_id']}", ("queued", "running"))
-if run["status"] != "succeeded":
-    raise SystemExit(f"refresh failed: {run['error_code']}: {run['error']}")
+# Inspect blockers before a first submission. For an ambiguous launch response,
+# replay the identical POST: it may already own a reservation or completed run.
+run = request("POST", f"/studies/{study}/runs", json=payload)
+model_hash = run["model_hash"]
+if not model_hash:
+    raise RuntimeError("The run has no model hash; inspect the study run")
 
-# 2. The dataset the new version registered: {pipeline name}_v{version}.csv
-versions = get(f"/pipelines/{PIPELINE}/versions")
-number = next(v["version"] for v in versions["versions"] if v["id"] == run["version_id"])
-safe_name = re.sub(r"[^\w-]", "_", versions["pipeline"]["name"]).strip("_") or "pipeline"
-dataset_id = get("/ingest", name=f"{safe_name}_v{number}.csv")["files"][0]["id"]
-
-# 3. Create the model once: a retried job finds this week's model by name instead.
-found = [m for m in get("/models", include_unsaved="true")["models"]
-         if m["name"] == MODEL_NAME and m["status"] != "failed"]
-if found:
-    model_hash = found[0]["model_hash"]
-else:
-    r = requests.post(f"{BASE}/models", headers=HEADERS, json={
-        "name": MODEL_NAME, "data_source": {"uploaded_file_id": dataset_id},
-        "date_column": "date", "kpi_column": "revenue", "hierarchy_column": "brand",
-        "channels": [
-            {"name": "TV", "activity_column": "tv_activity", "spend_column": "tv_spend"},
-            {"name": "Search", "activity_column": "search_activity", "spend_column": "search_spend"},
-            {"name": "Social", "activity_column": "social_activity", "spend_column": "social_spend"}],
-        "total_media_effect": "Retail"})
-    r.raise_for_status()
-    model_hash = r.json()["model_hash"]
-
-# 4. Wait for the fit, then file the model so it is not pruned as an unsaved model.
-status = wait(f"/models/{model_hash}/status", ("pending", "under way"))
+deadline = time.monotonic() + 3600
+while True:
+    status = request("GET", f"/models/{model_hash}/status")
+    if status["status"] not in ("pending", "under way"):
+        break
+    if time.monotonic() >= deadline:
+        raise TimeoutError("Polling stopped; the fit may continue. Resume with the same job key.")
+    time.sleep(10)
 if status["status"] != "complete":
-    raise SystemExit(f"fit ended with status {status['status']}: {status['error']}")
-requests.post(f"{BASE}/models/{model_hash}/save", headers=HEADERS, json={"name": MODEL_NAME}).raise_for_status()
+    raise RuntimeError(f"Fit ended: {status['status']}; {status.get('error')}")
 
-# 5. The report: channel ROI from the model, actual weekly KPI and spend from the data.
-results = get(f"/models/{model_hash}/results", sections="channel_summary,model_stats")["results"]
-for row in results["channel_summary"]:
-    print(f"{row['Channel']}: ROI {row['ROI']:.2f} on spend {row['Spend']:,.0f}")
-report = get(f"/datasets/{dataset_id}/report", start="2026-09-07", end="2026-10-04",
-             granularity="week", group_by="channel", metrics="kpi,spend",
-             roles=json.dumps({"revenue": "kpi", "brand": "hierarchy"}))
-print(f"model {model_hash}, data through {report['dataset']['data_through']}")
+results = request("GET", f"/models/{model_hash}/results",
+                  params={"sections": "channel_summary,model_stats"})
+print(json.dumps({"study_id": study, "revision_id": payload["revision_id"],
+                  "run_id": run["id"], "model_hash": model_hash,
+                  "results": results["results"]}, indent=2))
 ```
 
-## Things to keep in mind
+No blanket HTTP retry is configured. Read the refusal code, preserve the checkpoint and recover the specific operation. A timeout ends this script's wait; it does not cancel the fit. Study-owned fits are retained by the study, so this stage does not call `save_model`.
 
-- **A retry is your responsibility on `create_model`.** It has no submission key today; the name check above is what stops a second fit. `launch_study_run` is the one fit submission that dedupes on a key.
-- **Unsaved models are pruned.** The app keeps at most 10 unsaved models per user and prunes when a model is created in the app. A fit still in progress, a saved model, a shared one, and one in a portfolio or a study are never pruned. Save the weekly model, or it may be gone by the next report.
-- **Each week's model restates history.** Quote the `model_hash` and the `data_through` you read from in every report.
-- **Rate limits are per key.** Model status, results, the data report, the model and dataset listings and the version listing allow 60 requests a minute; polling a pipeline run allows 120; starting a pipeline run allows 10; creating a model allows 100.
+## Reporting and acceptance
+
+Quote the exact pipeline version, revision, run and model hash alongside the reporting window. `channel_summary` describes the model's fitted window, and each new fit can restate historical estimates. Read `model_stats` and evaluate the run against the chosen quality policy before recommending it for use. Completion is not proof of convergence, causal validity or held-out accuracy.
+
+The current dataset report accepts uploaded-file dataset ids, including historical registered pipeline outputs. It does not take a new pipeline version id. Do not send a version id as `dataset_id` or claim a newly refreshed actual-data report from that endpoint. Report actuals through a separately supported source workflow with explicit provenance.
+
+A recurring run can prepare results and a recommendation. Acceptance, manual sign-off and Champion selection require a signed-in person in the application. A synthetic demonstration validates orchestration and contracts; it does not validate a client's model or certify unattended production operation.
 
 ## Next steps
 
 - [Refresh data on a schedule](./refresh-data-on-a-schedule.md)
-- [Connect your warehouse](./connect-your-warehouse.md)
-- [Report sales and media data](./report-sales-and-media-data.md)
+- [Build a model from a pipeline version](./model-from-a-pipeline-version.md)
+- [Studies](../platform-guide/studies.md)
 - [Simba MCP](./simba-mcp.md)
-- [Incremental Measurement](../platform-guide/measurement.md)
