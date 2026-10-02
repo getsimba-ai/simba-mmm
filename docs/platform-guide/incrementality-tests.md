@@ -2,7 +2,7 @@
 
 Simba keeps a record of every incrementality test a project has run: geo tests, owned-media A/B tests (a leaflet or email split, for example) and platform lift studies such as a Meta Conversion Lift. Each record holds what was tested, when, what it found and what it cost, and a completed test can calibrate any daily or weekly media mix model in the project. The calibration row is derived from the record against the chosen model, and every step of that derivation is shown.
 
-Tests are analysed in your own tool. Simba imports the result; it does not run geo or lift analyses itself.
+Tests are analysed in your own tool. Simba imports the result; it does not run geo or lift analyses itself. It can, however, propose a test before it starts: see [Design an incrementality test](./test-design.md) for time holdouts and geo splits designed from a saved model and saved here as planned records.
 
 You can work with tests in the app (**Warehouse → Experiments → Incrementality tests**, and the model wizard), through the API, and through [Simba MCP](../integrations/simba-mcp.md). The MCP tool reference is generated from the running server: see [`docs/tools.md` in the simba-mcp repository](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tools.md) for the exact parameters of `list_incrementality_tests`, `get_incrementality_test`, `create_incrementality_test`, `import_incrementality_tests` and `create_model`.
 
@@ -10,7 +10,7 @@ You can work with tests in the app (**Warehouse → Experiments → Incrementali
 
 | Field | What it is |
 |---|---|
-| `type` | `geo`, `owned_media_ab` or `platform_lift`, each with its own block: treatment and control regions and the method for a geo test; the medium, unit and arm sizes for an owned-media split; the platform, study and cell for a lift study |
+| `type` | `geo`, `owned_media_ab`, `platform_lift` or `time_holdout`, each with its own block: treatment and control regions and the method for a geo test; the medium, unit and arm sizes for an owned-media split; the platform, study and cell for a lift study; the counterfactual, analysis method and carryover for a time holdout, which only a [saved design](./test-design.md) can create |
 | `name`, `status` | `planned`, `running`, `completed` or `invalid`. Only completed tests calibrate a model |
 | `channel` | The channel as the business names it, e.g. "Paid Social" |
 | `model_channel` | The model column the test calibrates, e.g. `meta_impressions`. Optional; you can choose the column when you use the test |
@@ -140,7 +140,7 @@ When the study's validation pair is assessed, `incrementality_provenance` report
 
 ## Things to keep in mind
 
-- **Analysis stays in your tool.** Simba records and uses results; it doesn't design or run tests.
+- **Analysis stays in your tool.** Simba records and uses results; it can [design a test](./test-design.md) from a saved model, but it doesn't run or analyse one. A completed time holdout is kept and reported but doesn't calibrate a model, because it compares the outcome with the model's own forecast.
 - **Owned-media tests are recorded and reported.** Today they don't calibrate a model; a later release adds that.
 - **A one-sided interval can't calibrate.** Re-run the analysis two-sided, or record the tool's standard deviation.
 - **Deleting is blocked while a study uses the test.** Study revisions and published drafts keep a link to the test versions they used, so their inputs can always be reproduced. A model fitted directly through `create_model` keeps no link back, but does record what calibrated it.

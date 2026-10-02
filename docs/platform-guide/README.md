@@ -12,6 +12,10 @@ This guide covers every major feature of the Simba MMM platform, organized aroun
 
 - **[Incremental Measurement](./measurement.md)** --- Causal attribution across all marketing channels. Separates base sales from media lift, integrates lift tests, and isolates the true incremental value of each channel. Includes model lifecycle, cloning, and custom contribution groups.
 
+- **[Incrementality tests](./incrementality-tests.md)** --- The project's record of geo, owned-media and platform lift tests, and the calibration row each completed test gives a model, with every derivation step shown.
+
+- **[Design an incrementality test](./test-design.md)** --- Propose a time holdout or geo split from a saved model. Keeps apart what the model expects, the smallest effect the test can detect and the chance of detecting it, and saves the design as a planned test.
+
 - **[Validation Metrics, Holdouts and Quality Policies](./validation-and-holdout.md)** --- Fit diagnostics and their thresholds, reserving a holdout, saved prediction windows, and declaring the quality policy a study run is scored against.
 
 - **[Studies](./studies.md)** --- One shared record of a modelling question: drafts, published revisions, diffs, calibration, quality policies, evaluations and the Champion a person finally chooses.

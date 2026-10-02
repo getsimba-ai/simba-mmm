@@ -32,6 +32,7 @@ Simba is a no-code MMM platform built on [PyMC](https://www.pymc.io/) by the tea
 | Measure promotions, price and distribution | [Promotions and pricing as controls](./platform-guide/promotions-and-pricing.md) |
 | Understand my channel results | [Incremental Measurement](./platform-guide/measurement.md) |
 | Record geo, owned-media and lift tests and calibrate with them | [Incrementality tests](./platform-guide/incrementality-tests.md) |
+| Design a time holdout or geo split from a saved model and save it as a planned test | [Design an incrementality test](./platform-guide/test-design.md) |
 | Validate a model against a holdout and a quality policy | [Validation metrics, holdouts and quality policies](./platform-guide/validation-and-holdout.md) |
 | Run a study from recipe to champion | [Studies](./platform-guide/studies.md) |
 | Optimize my media budget | [Budget Optimization](./platform-guide/budget-optimization.md) |
@@ -90,6 +91,7 @@ Step-by-step guides for every feature in the Simba interface.
 
 - **[Incremental Measurement](./platform-guide/measurement.md)** --- Channel contributions, response curves, ROAS, posterior diagnostics, and contribution groups
 - **[Incrementality tests](./platform-guide/incrementality-tests.md)** --- Record geo tests, owned-media A/B tests and platform lift studies, import them from Meta, GeoX, GeoLift, CausalPy or CSV, and calibrate any model with a derived row whose steps are shown
+- **[Design an incrementality test](./platform-guide/test-design.md)** --- Propose a time holdout or geo split from a saved model: what the model expects, the smallest effect the test can detect and the chance of detecting it, then save it as a planned test
 - **[Validation Metrics, Holdouts & Quality Policies](./platform-guide/validation-and-holdout.md)** --- Fit diagnostics and their thresholds, reserving a holdout, saved prediction windows, and declaring the quality policy a study run is scored against
 - **[Studies](./platform-guide/studies.md)** --- Drafts, published revisions, diffs, calibration, quality policies, evaluations and the Champion, shared by analysts in the app and agents over the API or MCP
 - **[Long-Term Effects](./platform-guide/long-term-effects.md)** --- Brand equity modeling with Bayesian VAR
