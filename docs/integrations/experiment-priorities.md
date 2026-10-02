@@ -79,8 +79,10 @@ conflict or identification from this single diagnostic.
 Results describe one model. A recorded hierarchy identity can be a brand rather
 than a geographical market, so the tool does not infer geographical coverage or
 pool independent market fits. Registry history is unknown because its scope cannot
-be established. `design_hint.available` is false because valid experiment design
-requires additional inputs; no minimum detectable effect is invented.
+be established. `design_hint.available` is true when the model passes the designer's support
+checks and false, with a reason, otherwise; no minimum detectable effect is ever
+placed in the card. The design itself is calculated separately: see
+[Design an incrementality test](../platform-guide/test-design.md).
 
 ## Architecture
 
