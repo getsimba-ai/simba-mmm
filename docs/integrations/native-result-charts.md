@@ -1,6 +1,6 @@
 # Native result charts
 
-> **Upcoming capability, not yet released.** These tools require a forthcoming compatible Simba MCP release and an MCP Apps-capable client. As of 2 October 2026, [MCP PR #87](https://github.com/getsimba-ai/simba-mcp/pull/87) is open and unmerged. This guide does not claim that the tools are available in your installed server. Check the release notes and the connected server's tool list before using them; native-client acceptance is recorded separately.
+> **Available in [Simba MCP v0.16.0](https://github.com/getsimba-ai/simba-mcp/releases/tag/v0.16.0), published on [PyPI](https://pypi.org/project/simba-mcp/0.16.0/).** Your connected MCP server must provide v0.16.0 or a later compatible release, with a compatible backend and an MCP Apps-capable client. Package publication does not upgrade a hosted server: check its version and tool list. Native-client acceptance has not yet been observed and is recorded separately.
 
 Three read-only tools display existing results in hosts that support MCP Apps:
 
@@ -22,7 +22,7 @@ The view uses only returned values. Missing observations remain gaps. Legacy res
 
 Decomposition values are KPI units, not revenue. `Overlap` is a reconciliation term, not a channel. Allocation `Revenue` and `ROI` are decision quantities; `OptimizedEvalRevenue`, `OptimizedEvalROI`, `HistoricalRevenue` and `HistoricalROI` are accounting comparison quantities. These are presented in separate tables without computing uplift.
 
-See the [proposed chart contract](https://github.com/getsimba-ai/simba-mcp/blob/785c81c70284f114d0e21a98b839d43d919ac93c/docs/tools.md) for this unreleased change. After release, compare the [generated MCP tool reference](https://github.com/getsimba-ai/simba-mcp/blob/main/docs/tools.md) with your connected server's version and tool list.
+See the [v0.16.0 tool reference](https://github.com/getsimba-ai/simba-mcp/blob/v0.16.0/docs/tools.md) for this version's chart contract. Compare it with your connected server's version and tool list before using the examples.
 
 ## Compatibility and security
 
@@ -30,7 +30,7 @@ The server advertises `ui://simba/charts.html` with the MCP Apps MIME type `text
 
 The implementation follows the [MCP Apps lifecycle](https://apps.extensions.modelcontextprotocol.io/api/documents/Overview.html) and the [shared MCP Apps UI protocol supported by ChatGPT](https://developers.openai.com/plugins/build/chatgpt-ui). Documented protocol support is distinct from acceptance in a particular account or client version.
 
-Automated fixture rendering covers the three views and missing-data conventions. Actual native-host acceptance is recorded separately. Do not describe an ordinary browser fixture screenshot as a live client screenshot.
+Automated fixture rendering covers the three views and missing-data conventions. Actual native-host acceptance has not yet been observed and is recorded separately. Do not describe an ordinary browser fixture screenshot as a live client screenshot.
 
 ## Synthetic browser examples
 

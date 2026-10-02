@@ -145,12 +145,12 @@ For setup problems, include the server version and tool names in a [public MCP i
 
 ## Next steps
 
-### Upcoming integrations
+### Result views and experiment guidance
 
-These guides describe forthcoming capabilities and include their release prerequisites:
+These guides describe capabilities introduced in v0.16.0 and their backend and client requirements. Check each guide's availability note and the connected server's tool list:
 
-- [Native result charts (unreleased)](./native-result-charts.md)
-- [What to test next (unreleased MCP tool)](./experiment-priorities.md)
+- [Native result charts](./native-result-charts.md)
+- [What to test next](./experiment-priorities.md)
 
 ### Platform guides
 

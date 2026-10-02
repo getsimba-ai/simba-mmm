@@ -1,13 +1,13 @@
 # What to test next
 
-> **Upcoming MCP capability, not yet released.** This tool requires a forthcoming compatible Simba MCP release and backend support for the priority endpoint. As of 2 October 2026, [MCP PR #88](https://github.com/getsimba-ai/simba-mcp/pull/88) is open and unmerged. This guide does not claim that the tool is available in your installed server. Check release notes and the connected server's tool list before using it; native-client acceptance is recorded separately.
+> **Available in [Simba MCP v0.16.0](https://github.com/getsimba-ai/simba-mcp/releases/tag/v0.16.0), published on [PyPI](https://pypi.org/project/simba-mcp/0.16.0/).** Your connected MCP server must provide v0.16.0 or a later compatible release, and its backend must support the priority endpoint. Package publication does not upgrade a hosted server: check its version and tool list. Native-client acceptance has not yet been observed and is recorded separately.
 
 `recommend_incrementality_tests(model_hash, budget=None, hurdle=1.0, limit=5)`
 reads a saved model's marginal-return summaries and ranks channels for further
 experiment investigation. It never fits a model, changes spend or starts a test.
 It requires a backend with `/api/v1/models/{hash}/test-priorities` support.
 
-See the [proposed tool reference](https://github.com/getsimba-ai/simba-mcp/blob/d6f357443b4053a3997695c22349b252b964028d/docs/tools.md) for the unreleased contract and the [connection guide](./simba-mcp.md) for setup. On a compatible Simba backend, the model's Media Results can expose **What to test next** using the same server-computed ranking; backend deployment and MCP package availability are separate prerequisites.
+See the [v0.16.0 tool reference](https://github.com/getsimba-ai/simba-mcp/blob/v0.16.0/docs/tools.md) for the versioned contract and the [connection guide](./simba-mcp.md) for setup. On a compatible Simba backend, the model's Media Results can expose **What to test next** using the same server-computed ranking; backend deployment and MCP package availability are separate prerequisites.
 
 Example with a synthetic model you can access:
 
