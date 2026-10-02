@@ -145,6 +145,13 @@ For setup problems, include the server version and tool names in a [public MCP i
 
 ## Next steps
 
+### Upcoming integrations
+
+These guides describe forthcoming capabilities and include their release prerequisites:
+
+- [Native result charts (unreleased)](./native-result-charts.md)
+- [What to test next (unreleased MCP tool)](./experiment-priorities.md)
+
 ### Platform guides
 
 - [Model configuration](../platform-guide/model-configuration.md)
