@@ -77,7 +77,7 @@ Simba provides a complete workflow for marketing mix modeling:
 
 Simba uses Bayesian Marketing Mix Modeling rather than frequentist regression. This matters because:
 
-- **Uncertainty quantification** — every estimate comes with a 94% HDI (Highest Density Interval), so you know how confident to be in each channel's ROI
+- **Uncertainty quantification** — supported outputs come with intervals, including a 94% HDI (Highest Density Interval) on model coefficients and on each channel's marginal ROI, so you know how confident to be before acting on a result
 - **Prior knowledge** — encode domain expertise (e.g., "TV has longer carryover than paid search") directly into the model
 - **Lift test calibration** — integrate experimental results (lift tests, geo tests) as likelihood observations to validate and improve model accuracy
 - **Small data friendly** — Bayesian models produce reliable estimates even with limited historical data
